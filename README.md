@@ -17,3 +17,10 @@ This is a Library System Website, designed using html and css.
 1. **index.html** - Home Page (Search Food, Some Categories, Featured Foods, Social Media link)
 2. **search-books.html** - List all books on Single Page
 3. ...
+
+## How to use template:
+Create new database inside PHPmyAdmin
+Click on Import tab at top
+Click Choose File and select "librarysystem.sql"
+Scroll to the bottom and click "Import"
+Congratulations, you now have a database
