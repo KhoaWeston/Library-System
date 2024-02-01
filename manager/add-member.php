@@ -61,9 +61,9 @@
     {
         // Get data from form
         $username = $_POST['username'];
-        $password = md5($_POST['password']);
+        $password = md5($_POST['password']); // password encryption
         $address = $_POST['address'];
-        $phone_num = $_POST['phone_num']; // password encryption
+        $phone_num = $_POST['phone_num']; 
 
         // SQL Query to save the data into the database
         $sql = "INSERT INTO user SET
@@ -77,18 +77,16 @@
        $res = mysqli_query($conn, $sql) or die(mysqli_error());
 
        // check whether the query is executed 
-       if($res==TRUE){
-        // echo "data inserted";
-        // Create a session variable to display message
-        $_SESSION['add'] = "Member added successfully";
-        // Redirect Page
-        header("location:".SITEURL.'manager/search-members.php');
+       if($res==TRUE){        
+            // Create a session variable to display message
+            $_SESSION['add'] = "Member added successfully";
+            // Redirect Page
+            header("location:".SITEURL.'manager/search-members.php');
        }else{
-        // echo "fail to insert data";
-        // Create a session variable to display message
-        $_SESSION['add'] = "Failed to add member";
-        // Redirect Page
-        header("location:".SITEURL.'manager/add-member.php');
+            // Create a session variable to display message
+            $_SESSION['add'] = "Failed to add member";
+            // Redirect Page
+            header("location:".SITEURL.'manager/add-member.php');
        }
     }
 ?>

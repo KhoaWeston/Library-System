@@ -4,14 +4,64 @@
     <section class="book-catalog">
         <div class="container">
             <h2 class="text-center">Remove Member</h2>
-            <h4>[book_title]</h4>
-            <p class="book-author">[author_name]</p>
-            <p class="date-issue">[issue_date]</p>
-            <p class="date-expire">[expire_date]</p>
+            
+            <form action="" method="POST">
+                <table class="tbl-full">
+                    <tr>
+                        <td>ID: </td>
+                        <td>
+                            <?php 
+                                echo $id = $_GET['id'];
+                            ?>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Username: </td>
+                        <td>
+                            <?php 
+                                echo $username = $_GET['username'];
+                            ?>
+                        </td>
+                    </tr>
 
-            <a href="search-members.php" class="btn btn-primary">Confirm</a>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" name="submit" value="Confirm" class="btn btn-primary">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            
         </div>
     </section>
     <!-- Main Section Ends Here -->
 
 <?php include('partials/footer.php'); ?>
+
+<?php 
+    if(isset($_POST['submit']))
+    {
+        // Get the ID of member to be deleted
+        $id = $_GET['id'];
+            
+        // Create SQL query to delete member
+        $sql = "DELETE FROM user WHERE UID=$id";
+
+        // Execute the query 
+        $res = mysqli_query($conn, $sql);
+
+        // Check whether the query executed sucessfully or not
+        if($res==TRUE){
+            // Create a session variable to display message
+            $_SESSION['delete'] = "Member deleted successfully";
+            // Redirect Page
+            header("location:".SITEURL.'manager/search-members.php');
+        }else{
+            // Create a session variable to display message
+            $_SESSION['delete'] = "Failed to delete member";
+            // Redirect Page
+            header("location:".SITEURL.'manager/remove-member.php');
+        }
+    }
+?>

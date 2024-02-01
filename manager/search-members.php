@@ -23,66 +23,67 @@
                     echo $_SESSION['add']; // Display message
                     unset($_SESSION['add']); // Remove message
                 }
+
+                if(isset($_SESSION['delete'])){
+                    echo $_SESSION['delete']; // Display message
+                    unset($_SESSION['delete']); // Remove message
+                }
             ?>
             <br /><br /><br />
             <a href="add-member.php" class="btn btn-primary">Add Member</a>
             
             <table class="tbl-full">
                 <tr>
-                    <th>S.N.</th>
-                    <th>Full Name</th>
+                    <th>UID</th>
                     <th>Username</th>
+                    <th>Address</th>
+                    <th>Phone Number</th>
                     <th>Actions</th>
                 </tr>
 
                 <?php 
                     // Query to get all members
-                    $sql = "SELECT * FROM users";
+                    $sql = "SELECT * FROM user";
                     // Execute the query
                     $res = mysqli_query($conn, $sql);
 
                     // Check whether the query is executed or not
                     if($res==TRUE){
-                        $count = mysqli_num_rows($res);
+                        // Count Rows to check whether we have data in the database or not
+                        $count = mysqli_num_rows($res); // Function to get all the rows in the database
+
+                        $id_ctr = 1; // Variable 
 
                         if($count>0){
                             while($rows=mysqli_fetch_assoc($res)){
-                                $id = $rows['id'];
-                                $full_name
+                                $id = $rows['UID'];
+                                $username = $rows['Username'];
+                                $address = $rows['Address'];
+                                $phone_num = $rows['PhoneNum'];
+
+                                ?>
+                                <tr>
+                                    <td><?php echo $id_ctr++; ?>.</td>
+                                    <td><?php echo $username; ?></td>
+                                    <td><?php echo $address; ?></td>
+                                    <td><?php echo $phone_num; ?></td>
+                                    <td>
+                                        <a href="#" class="btn btn-primary">Edit Member</a>
+                                        <form method="get" action="<?php echo SITEURL; ?>manager/remove-member.php">
+                                            <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                            <input type="hidden" name="username" value="<?php echo $username; ?>">
+                                            <input class="btn btn-primary" type="submit" value="Remove Member" />
+                                        </form>
+                                    </td>
+                                </tr>
+                                <?php 
                             }
+                        }else{
+                            // No data
                         }
                     }
                 ?> 
 
-                <tr>
-                    <td>1. </td>
-                    <td>Khoa Weston</td>
-                    <td>Khoa Weston</td>
-                    <td>
-                        <a href="#" class="btn btn-primary">Edit Member</a>
-                        <a href="remove-member.php" class="btn btn-primary">Remove Member</a>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>2. </td>
-                    <td>Khoa Weston</td>
-                    <td>Khoa Weston</td>
-                    <td>
-                        <a href="#" class="btn btn-primary">Edit Member</a>
-                        <a href="remove-member.php" class="btn btn-primary">Remove Member</a>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>3. </td>
-                    <td>Khoa Weston</td>
-                    <td>Khoa Weston</td>
-                    <td>
-                        <a href="#" class="btn btn-primary">Edit Member</a>
-                        <a href="remove-member.php" class="btn btn-primary">Remove Member</a>
-                    </td>
-                </tr>
             </table>
 
             <div class="clearfix"></div>
