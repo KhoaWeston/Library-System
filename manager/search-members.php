@@ -5,7 +5,7 @@
         <div class="container">
             
             <form action="#" method="POST">
-                <input type="search" name="search" placeholder="Search for Book...." required>
+                <input type="search" name="search" placeholder="Search for Member...." required>
                 <input type="submit" name="submit" value="Search" class="btn btn-primary">
             </form>
 
@@ -14,10 +14,17 @@
     <!-- Book Search Section Ends Here -->
 
     <!-- Book Catalog Section Starts Here -->
-    <section class="book-catalog">
+    <section class="book-catalog">  
         <div class="container">
             <h2 class="text-center">Member List</h2>
 
+            <?php 
+                if(isset($_SESSION['add'])){
+                    echo $_SESSION['add']; // Display message
+                    unset($_SESSION['add']); // Remove message
+                }
+            ?>
+            <br /><br /><br />
             <a href="add-member.php" class="btn btn-primary">Add Member</a>
             
             <table class="tbl-full">
@@ -27,6 +34,25 @@
                     <th>Username</th>
                     <th>Actions</th>
                 </tr>
+
+                <?php 
+                    // Query to get all members
+                    $sql = "SELECT * FROM users";
+                    // Execute the query
+                    $res = mysqli_query($conn, $sql);
+
+                    // Check whether the query is executed or not
+                    if($res==TRUE){
+                        $count = mysqli_num_rows($res);
+
+                        if($count>0){
+                            while($rows=mysqli_fetch_assoc($res)){
+                                $id = $rows['id'];
+                                $full_name
+                            }
+                        }
+                    }
+                ?> 
 
                 <tr>
                     <td>1. </td>
