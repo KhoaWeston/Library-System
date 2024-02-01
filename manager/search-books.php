@@ -1,46 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- Important to make website responsive -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShavySavvy</title>
-
-    <!-- Link our CSS file -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-    <!-- Navbar Section Starts Here -->
-    <section class="navbar">
-        <div class="container">
-            <div class="logo">
-                <a href="index.html" title="Logo">
-                    <img src="images/Trine_logo.jpg" alt="Library System Logo" class="img-logo">
-                </a>
-            </div>
-
-            <div class="header text-right">
-                <ul>
-                    <li>
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="search-books.html">Search Books</a>
-                    </li>
-                    <li>
-                        <a href="reserved.html">Reserved</a>
-                    </li>
-                    <li>
-                        <a href="profile.html">Profile</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="clearfix"></div>
-        </div>
-    </section>
-    <!-- Navbar Section Ends Here -->
+<?php include('partials/header.php'); ?>
 
     <!-- Book Search Section Starts Here -->
     <section class="book-search text-center">
@@ -60,6 +18,8 @@
         <div class="container">
             <h2 class="text-center">Book Catalog</h2>
 
+            <a href="add-book.php" class="btn btn-primary">Add Book</a>
+
             <div class="book-catalog-box">
                 <div class="book-catalog-img">
                     <img src="" alt="Wizard Image" class="img-responsive img-curve">
@@ -75,7 +35,8 @@
                     </p>
                     <br>
 
-                    <a href="place-order.html" class="btn btn-primary">Order Now</a>
+                    <a href="edit-book.php" class="btn btn-primary">Edit Book</a>
+                    <a href="remove-book.php" class="btn btn-primary">Remove Book</a>
                 </div>
             </div>
 
@@ -94,7 +55,8 @@
                     </p>
                     <br>
 
-                    <a href="place-order.html" class="btn btn-primary">Order Now</a>
+                    <a href="edit-book.php" class="btn btn-primary">Edit Book</a>
+                    <a href="remove-book.php" class="btn btn-primary">Remove Book</a>
                 </div>
             </div>
 
@@ -105,13 +67,4 @@
     </section>
     <!-- Book Catalog Section Ends Here -->
 
-    <!-- footer Section Starts Here -->
-    <section class="footer">
-        <div class="container text-center">
-            <p>All rights reserved. Designed By <a href="#">Khoa Weston</a></p>
-        </div>
-    </section>
-    <!-- footer Section Ends Here -->
-
-</body>
-</html>
+<?php include('partials/footer.php'); ?>

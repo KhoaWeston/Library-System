@@ -92,8 +92,24 @@ fieldset{
     margin: auto;
 }
 
+/* CSS for table */
 
-/* CSSS for navbar section */
+.tbl-full{
+    margin-top: 20px;
+    width: 100%;
+}
+
+table tr th{
+    border-bottom: 1px solid black;
+    padding: 1%;
+    text-align: left;
+}
+
+table tr td{
+    padding: 1%;
+}
+
+/* CSS for navbar section */
 
 .logo{
     width: 10%;

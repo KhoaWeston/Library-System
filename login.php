@@ -27,7 +27,7 @@
             <div class="pass">Forgot Password?</div>
             <div class="text-center"><input type="submit" value="Login"></div>
             <div class="signup_link">
-                Not a member? <a href="index.html">Signup</a>
+                Not a member? <a href="index.php">Signup</a>
             </div>
         </form>
     </div>

@@ -1,46 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- Important to make website responsive -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShelfSavvy</title>
-
-    <!-- Link our CSS file -->
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-
-<body>
-    <!-- Navbar Section Starts Here -->
-    <section class="navbar">
-        <div class="container">
-            <div class="logo">
-                <a href="home-manager.html" title="Logo">
-                    <img src="../images/Trine_logo.jpg" alt="Library System Logo" class="img-logo">
-                </a>
-            </div>
-
-            <div class="header text-right">
-                <ul>
-                    <li>
-                        <a href="home-manager.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="search-books-manager.html">Search Books</a>
-                    </li>
-                    <li>
-                        <a href="search-members.html">Search Members</a>
-                    </li>
-                    <li>
-                        <a href="../profile.html">Profile</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="clearfix"></div>
-        </div>
-    </section>
-    <!-- Navbar Section Ends Here -->
+<?php include('partials/header.php'); ?>
 
     <!-- Book Search Section Starts Here -->
     <section class="book-search text-center">
@@ -56,11 +14,9 @@
     <!-- Book Search Section Ends Here -->
 
     <!-- Book Catalog Section Starts Here -->
-    <section class="book-catalog">
+    <section class="page-container">
         <div class="container">
             <h2 class="text-center">Book Catalog</h2>
-
-            <a href="add-member.html" class="btn btn-primary">Add Member</a>
 
             <div class="book-catalog-box">
                 <div class="book-catalog-img">
@@ -77,7 +33,7 @@
                     </p>
                     <br>
 
-                    <a href="remove-member.html" class="btn btn-primary">Remove Member</a>
+                    <a href="place-order.php" class="btn btn-primary">Order Now</a>
                 </div>
             </div>
 
@@ -96,7 +52,7 @@
                     </p>
                     <br>
 
-                    <a href="remove-member.html" class="btn btn-primary">Remove Member</a>
+                    <a href="place-order.php" class="btn btn-primary">Order Now</a>
                 </div>
             </div>
 
@@ -107,13 +63,4 @@
     </section>
     <!-- Book Catalog Section Ends Here -->
 
-    <!-- footer Section Starts Here -->
-    <section class="footer">
-        <div class="container text-center">
-            <p>All rights reserved. Designed By <a href="#">Khoa Weston</a></p>
-        </div>
-    </section>
-    <!-- footer Section Ends Here -->
-
-</body>
-</html>
+    <?php include('partials/footer.php'); ?>
