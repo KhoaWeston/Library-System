@@ -28,6 +28,26 @@
                     echo $_SESSION['delete']; // Display message
                     unset($_SESSION['delete']); // Remove message
                 }
+
+                if(isset($_SESSION['update'])){
+                    echo $_SESSION['update']; // Display message
+                    unset($_SESSION['update']); // Remove message
+                }
+
+                if(isset($_SESSION['user-not-found'])){
+                    echo $_SESSION['user-not-found']; // Display message
+                    unset($_SESSION['user-not-found']); // Remove message
+                }
+
+                if(isset($_SESSION['pwd-not-match'])){
+                    echo $_SESSION['pwd-not-match']; // Display message
+                    unset($_SESSION['pwd-not-match']); // Remove message
+                }
+
+                if(isset($_SESSION['change-pwd'])){
+                    echo $_SESSION['change-pwd']; // Display message
+                    unset($_SESSION['change-pwd']); // Remove message
+                }
             ?>
             <br /><br /><br />
             <a href="add-member.php" class="btn btn-primary">Add Member</a>
@@ -68,7 +88,8 @@
                                     <td><?php echo $address; ?></td>
                                     <td><?php echo $phone_num; ?></td>
                                     <td>
-                                        <a href="#" class="btn btn-primary">Edit Member</a>
+                                        <a href="<?php echo SITEURL; ?>manager/update-password.php?id=<?php echo $id; ?>" class="btn btn-primary">Update Password</a>
+                                        <a href="<?php echo SITEURL; ?>manager/edit-member.php?id=<?php echo $id; ?>" class="btn btn-primary">Edit Member</a>
                                         <form method="get" action="<?php echo SITEURL; ?>manager/remove-member.php">
                                             <input type="hidden" name="id" value="<?php echo $id; ?>">
                                             <input type="hidden" name="username" value="<?php echo $username; ?>">

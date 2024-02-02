@@ -18,7 +18,7 @@
         <div class="container">
             <h2 class="text-center">Book Catalog</h2>
 
-            <a href="add-book.php" class="btn btn-primary">Add Book</a>
+            <div><a href="add-book.php" class="btn btn-primary">Add Book</a></div>
 
             <div class="book-catalog-box">
                 <div class="book-catalog-img">

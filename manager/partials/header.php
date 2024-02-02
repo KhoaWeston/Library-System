@@ -1,4 +1,7 @@
-<?php include('..\config\constant.php')?>
+<?php 
+    include('..\config\constants.php');
+    include('login-check.php');
+?>
 
 <html lang="en">
 <head>
@@ -33,7 +36,7 @@
                         <a href="search-members.php">Search Members</a>
                     </li>
                     <li>
-                        <a href="../profile.php">Profile</a>
+                        <a href="profile.php">Profile</a>
                     </li>
                 </ul>
             </div>

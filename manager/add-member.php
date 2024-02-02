@@ -46,6 +46,9 @@
                         <td colspan="2">
                             <input type="submit" name="submit" value="Add Member" class="btn btn-primary">
                         </td>
+                        <td>
+                            <a href="search-members.php" class="btn btn-primary">Cancel</a>
+                        </td>
                     </tr>
                 </table>
             </form>
@@ -79,12 +82,12 @@
        // check whether the query is executed 
        if($res==TRUE){        
             // Create a session variable to display message
-            $_SESSION['add'] = "Member added successfully";
+            $_SESSION['add'] = "<div class='success'>Member added successfully.</div>";
             // Redirect Page
             header("location:".SITEURL.'manager/search-members.php');
        }else{
             // Create a session variable to display message
-            $_SESSION['add'] = "Failed to add member";
+            $_SESSION['add'] = "<div class='error'>Failed to add member.</div>";
             // Redirect Page
             header("location:".SITEURL.'manager/add-member.php');
        }

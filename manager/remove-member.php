@@ -29,6 +29,9 @@
                         <td colspan="2">
                             <input type="submit" name="submit" value="Confirm" class="btn btn-primary">
                         </td>
+                        <td>
+                            <a href="search-members.php" class="btn btn-primary">Cancel</a>
+                        </td>
                     </tr>
                 </table>
             </form>
@@ -54,12 +57,12 @@
         // Check whether the query executed sucessfully or not
         if($res==TRUE){
             // Create a session variable to display message
-            $_SESSION['delete'] = "Member deleted successfully";
+            $_SESSION['delete'] = "<div class='success'>Member deleted successfully.</div>";
             // Redirect Page
             header("location:".SITEURL.'manager/search-members.php');
         }else{
             // Create a session variable to display message
-            $_SESSION['delete'] = "Failed to delete member";
+            $_SESSION['delete'] = "<div class='error'>Failed to delete member.</div>";
             // Redirect Page
             header("location:".SITEURL.'manager/remove-member.php');
         }
