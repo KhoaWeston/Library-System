@@ -1,6 +1,6 @@
 <?php include('partials/header.php'); ?>
 
-    <!-- Book Search Section Starts Here -->
+    <!-- Member Search Section Starts Here -->
     <section class="book-search text-center">
         <div class="container">
             
@@ -11,10 +11,10 @@
 
         </div>
     </section>
-    <!-- Book Search Section Ends Here -->
+    <!-- Member Search Section Ends Here -->
 
-    <!-- Book Catalog Section Starts Here -->
-    <section class="book-catalog">  
+    <!-- Member List Section Starts Here -->
+    <section class="page-container">  
         <div class="container">
             <h2 class="text-center">Member List</h2>
 
@@ -112,6 +112,6 @@
         </div>
 
     </section>
-    <!-- Book Catalog Section Ends Here -->
+    <!-- Member List Section Ends Here -->
 
 <?php include('partials/footer.php'); ?>

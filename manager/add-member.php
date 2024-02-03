@@ -1,7 +1,7 @@
 <?php include('partials/header.php'); ?>
 
     <!-- Main Section Starts Here -->
-    <section class="book-catalog">
+    <section class="page-container">
         <div class="container">
             <h2 class="text-center">Add Member</h2>
             

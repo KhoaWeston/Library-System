@@ -13,58 +13,86 @@
     </section>
     <!-- Book Search Section Ends Here -->
 
-    <!-- Book Catalog Section Starts Here -->
-    <section class="book-catalog">
+    <!-- Book Lists Section Starts Here -->
+    <section class="page-container">  
         <div class="container">
-            <h2 class="text-center">Book Catalog</h2>
+            <h2 class="text-center">Book List</h2>
 
-            <div><a href="add-book.php" class="btn btn-primary">Add Book</a></div>
+            <?php 
+                if(isset($_SESSION['add'])){
+                    echo $_SESSION['add']; // Display message
+                    unset($_SESSION['add']); // Remove message
+                }
 
-            <div class="book-catalog-box">
-                <div class="book-catalog-img">
-                    <img src="" alt="Wizard Image" class="img-responsive img-curve">
-                </div>
+                if(isset($_SESSION['delete'])){
+                    echo $_SESSION['delete']; // Display message
+                    unset($_SESSION['delete']); // Remove message
+                }
 
-                <div class="book-catalog-desc">
-                    <h4>Harry Potter</h4>
-                    <p class="book-author">[author_name]</p>
-                    <p class="book-ISBN">[ISBN_num]</p>
-                    <p class="book-num-copies">[num_copies]</p>
-                    <p class="book-detail">
-                        [Description]
-                    </p>
-                    <br>
+                if(isset($_SESSION['update'])){
+                    echo $_SESSION['update']; // Display message
+                    unset($_SESSION['update']); // Remove message
+                }
+            ?>
+            <br /><br /><br />
+            <a href="add-book.php" class="btn btn-primary">Add Book</a>
+            
+            <table class="tbl-full">
+                <tr>
+                    <th>ISBN</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Number of Copies</th>
+                    <th>Actions</th>
+                </tr>
 
-                    <a href="edit-book.php" class="btn btn-primary">Edit Book</a>
-                    <a href="remove-book.php" class="btn btn-primary">Remove Book</a>
-                </div>
-            </div>
+                <?php 
+                    // Query to get all members
+                    $sql = "SELECT * FROM books";
+                    // Execute the query
+                    $res = mysqli_query($conn, $sql);
 
-            <div class="book-catalog-box">
-                <div class="book-catalog-img">
-                    <img src="" alt="God Image" class="img-responsive img-curve">
-                </div>
+                    // Check whether the query is executed or not
+                    if($res==TRUE){
+                        // Count Rows to check whether we have data in the database or not
+                        $count = mysqli_num_rows($res); // Function to get all the rows in the database
 
-                <div class="book-catalog-desc">
-                    <h4>Percy Jackson</h4>
-                    <p class="book-author">[author_name]</p>
-                    <p class="book-ISBN">[ISBN_num]</p>
-                    <p class="book-num-copies">[num_copies]</p>
-                    <p class="book-detail">
-                        [Description]
-                    </p>
-                    <br>
+                        if($count>0){
+                            while($rows=mysqli_fetch_assoc($res)){
+                                $isbn = $rows['BookID'];
+                                $title = $rows['Title'];
+                                $author = $rows['Author'];
+                                $genre = $rows['Genre'];
+                                $num_copies = $rows['NumofCopies'];
 
-                    <a href="edit-book.php" class="btn btn-primary">Edit Book</a>
-                    <a href="remove-book.php" class="btn btn-primary">Remove Book</a>
-                </div>
-            </div>
+                                ?>
+                                <tr>
+                                    <td><?php echo $isbn; ?></td>
+                                    <td><?php echo $title; ?></td>
+                                    <td><?php echo $author; ?></td>
+                                    <td><?php echo $genre; ?></td>
+                                    <td><?php echo $num_copies; ?></td>
+                                    <td>
+                                        <a href="<?php echo SITEURL; ?>manager/edit-book.php?isbn=<?php echo $isbn; ?>" class="btn btn-primary">Edit Book</a>
+                                        <a href="<?php echo SITEURL; ?>manager/remove-book.php?isbn=<?php echo $isbn; ?>" class="btn btn-primary">Remove Book</a>
+                                    </td>
+                                </tr>
+                                <?php 
+                            }
+                        }else{
+                            // No data
+                        }
+                    }
+                ?> 
+
+            </table>
 
             <div class="clearfix"></div>
 
         </div>
 
     </section>
-    <!-- Book Catalog Section Ends Here -->
+    <!-- Book Lists Section Ends Here -->
 
 <?php include('partials/footer.php'); ?>
