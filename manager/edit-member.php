@@ -37,7 +37,7 @@
                         $phone_num = $row['PhoneNum'];
                     }else{
                         // Redirect to search members
-                        header('location:'.SITEURL.'manager/search-memebers.php');
+                        header('location:'.SITEURL.'manager/search-members.php');
                     }
                 }
             ?>

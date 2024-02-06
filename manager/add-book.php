@@ -12,12 +12,12 @@
                 }
             ?>
 
-            <form action="" method="POST">
+            <form action="" method="POST" enctype="multipart/form-data">
                 <table class="tbl-full">
                     <tr>
                         <td>ISBN: </td>
                         <td>
-                            <input type="number" name="isbn" placeholder="Book ISPN">
+                            <input type="number" name="isbn" placeholder="Book ISBN">
                         </td>
                     </tr>
 
@@ -50,6 +50,13 @@
                     </tr>
 
                     <tr>
+                        <td>Select Image: </td>
+                        <td>
+                            <input type="file" name="image">
+                        </td>
+                    </tr>
+
+                    <tr>
                         <td colspan="2">
                             <input type="submit" name="submit" value="Add Book" class="btn btn-primary">
                         </td>
@@ -76,13 +83,49 @@
         $genre = $_POST['genre']; 
         $num_copies = $_POST['num_copies']; 
 
+        // Check whether the image is selected or not and set the calue for image name 
+        if(isset($_FILES['image']['name'])){
+            // Upload the image
+            // To upload the image we need the image name, source path, and dest path
+            $image_name = $_FILES['image']['name'];
+
+            // Auto rename our image
+            // Get the extension of our image (.jpg...)
+            $ext = end(explode('.', $image_name));
+
+            // Rename the image
+            $image_name = "Book_cover_".rand(000, 999).'.'.$ext; 
+
+            $source_path = $_FILES['image']['tmp_name'];
+
+            $destination_path = "../images/books/".$image_name;
+
+            // Finally upload the image
+            $upload = move_uploaded_file($source_path, $destination_path);
+
+            // CHeck whether the image is uploaded or not
+            // And if the image is not uploaded then
+            if($upload==false){
+                // Set message
+                $_SESSION['upload'] = "<div class='success'>Failed to upload image.</div>";
+                // Redirect Page
+                header("location:".SITEURL.'manager/add-book.php');
+                // Stop the process
+                die();
+            }
+        }else{
+            // Dont upload image and set the image
+            $image_name="";
+        }
+
         // SQL Query to save the data into the database
         $sql = "INSERT INTO books SET
             BookID='$isbn',
             Title='$title',
             Author='$author',
             Genre='$genre',
-            NumofCopies='$num_copies'
+            NumofCopies='$num_copies',
+            image_name='$image_name'
         ";
 
        // Execute query and save data into database

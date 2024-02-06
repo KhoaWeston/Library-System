@@ -3,7 +3,7 @@
     <!-- Main Section Starts Here -->
     <section class="book-catalog">
         <div class="container">
-            <h2 class="text-center">Update Member</h2>
+            <h2 class="text-center">Edit Book</h2>
             
             <?php 
                 if(isset($_SESSION['update'])){
@@ -14,10 +14,10 @@
 
             <?php 
                 // Get the ID of the selected member
-                $id=$_GET['isbn'];
+                $isbn=$_GET['isbn'];
 
                 // Create SQL Query to get the details
-                $sql="SELECT * FROM user WHERE UID=$id";
+                $sql="SELECT * FROM books WHERE BookID=$isbn";
 
                 // Execute the query
                 $res=mysqli_query($conn, $sql);
@@ -32,12 +32,14 @@
                         // echo "member available";
                         $row=mysqli_fetch_assoc($res);
 
-                        $username = $row['Username'];
-                        $address = $row['Address'];
-                        $phone_num = $row['PhoneNum'];
+                        $title = $row['Title']; 
+                        $author = $row['Author'];
+                        $genre = $row['Genre']; 
+                        $num_copies = $row['NumofCopies']; 
+                        $current_image = $row['image_name'];
                     }else{
                         // Redirect to search members
-                        header('location:'.SITEURL.'manager/search-memebers.php');
+                        header('location:'.SITEURL.'manager/search-book.php');
                     }
                 }
             ?>
@@ -45,33 +47,65 @@
             <form action="" method="POST">
                 <table class="tbl-full">
                     <tr>
-                        <td>Username: </td>
+                        <td>Title: </td>
                         <td>
-                            <input type="text" name="username" value="<?php echo $username; ?>">
+                            <input type="text" name="title" value="<?php echo $title; ?>">
                         </td>
                     </tr>
 
                     <tr>
-                        <td>Address: </td>
+                        <td>Author: </td>
                         <td>
-                            <input type="text" name="address" value="<?php echo $address; ?>">
+                            <input type="text" name="author" value="<?php echo $author; ?>">
                         </td>
                     </tr>
 
                     <tr>
-                        <td>Phone Number: </td>
+                        <td>Genre: </td>
                         <td>
-                            <input type="number" name="phone_num" value="<?php echo $phone_num; ?>">
+                            <input type="text" name="genre" value="<?php echo $genre; ?>">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Number of Copies: </td>
+                        <td>
+                            <input type="number" name="num_copies" value="<?php echo $num_copies; ?>">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Current Image</td>
+                        <td>
+                            <?php 
+                                if($current_image != ""){
+                                    // Display the image 
+                                    ?>
+                                    <img src="<?php echo SITEURL; ?>images/books/<?php echo $current_image; ?>" width="150px" >
+
+                                    <?php 
+                                }else{
+                                    // Display the message
+                                    echo "<div class='error'>Image not added.</div>";
+                                }
+                            ?>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>New Image: </td>
+                        <td>
+                            <input type="file" name="new_image">
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <input type="hidden" name="id" value="<?php echo $id; ?>">
-                            <input type="submit" name="submit" value="Update Member" class="btn btn-primary">
+                            <input type="hidden" name="isbn" value="<?php echo $isbn; ?>">
+                            <input type="submit" name="submit" value="Update Book" class="btn btn-primary">
                         </td>
                         <td>
-                            <a href="search-members.php" class="btn btn-primary">Cancel</a>
+                            <a href="search-books.php" class="btn btn-primary">Cancel</a>
                         </td>
                     </tr>
                 </table>
@@ -87,17 +121,19 @@
     if(isset($_POST['submit']))
     {
         // Get all the values from form to update
-        $id = $_POST['id'];
-        $username = $_POST['username'];
-        $address = $_POST['address'];
-        $phone_num = $_POST['phone_num']; 
+        $isbn = $_POST['isbn'];
+        $title = $_POST['title'];
+        $author = $_POST['author'];
+        $genre = $_POST['genre']; 
+        $num_copies = $_POST['num_copies']; 
 
         // SQL Query to save the data into the database
-        $sql = "UPDATE user SET
-            Username='$username',
-            Address='$address',
-            PhoneNum='$phone_num'
-        WHERE UID='$id'";
+        $sql = "UPDATE books SET
+            Title='$title',
+            Author='$author',
+            Genre='$genre',
+            NumofCopies='$num_copies'
+        WHERE BookID='$isbn'";
 
        // Execute query and save data into database
        $res = mysqli_query($conn, $sql);
@@ -105,14 +141,14 @@
        // check whether the query is executed 
        if($res==TRUE){        
             // Create a session variable to display message
-            $_SESSION['update'] = "<div class='success'>Member updated successfully.</div>";
+            $_SESSION['update'] = "<div class='success'>Book updated successfully.</div>";
             // Redirect Page
-            header("location:".SITEURL.'manager/search-members.php');
+            header("location:".SITEURL.'manager/search-books.php');
        }else{
             // Create a session variable to display message
-            $_SESSION['update'] = "<div class='success'>Member updated successfully.</div>";
+            $_SESSION['update'] = "<div class='success'>Book updated successfully.</div>";
             // Redirect Page
-            header("location:".SITEURL.'manager/edit-member.php');
+            header("location:".SITEURL.'manager/edit-book.php');
        }
     }
 ?>

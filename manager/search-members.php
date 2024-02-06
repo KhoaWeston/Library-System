@@ -90,11 +90,7 @@
                                     <td>
                                         <a href="<?php echo SITEURL; ?>manager/update-password.php?id=<?php echo $id; ?>" class="btn btn-primary">Update Password</a>
                                         <a href="<?php echo SITEURL; ?>manager/edit-member.php?id=<?php echo $id; ?>" class="btn btn-primary">Edit Member</a>
-                                        <form method="get" action="<?php echo SITEURL; ?>manager/remove-member.php">
-                                            <input type="hidden" name="id" value="<?php echo $id; ?>">
-                                            <input type="hidden" name="username" value="<?php echo $username; ?>">
-                                            <input class="btn btn-primary" type="submit" value="Remove Member" />
-                                        </form>
+                                        <a href="<?php echo SITEURL; ?>manager/remove-member.php?id=<?php echo $id; ?>" class="btn btn-primary">Remove Member</a>
                                     </td>
                                 </tr>
                                 <?php 

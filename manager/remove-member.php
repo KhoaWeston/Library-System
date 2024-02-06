@@ -5,23 +5,54 @@
         <div class="container">
             <h2 class="text-center">Remove Member</h2>
             
+            <?php 
+                if(isset($_SESSION['delete'])){
+                    echo $_SESSION['delete']; // Display message
+                    unset($_SESSION['delete']); // Remove message
+                }
+            ?>
+
+            <?php 
+                // Get the ID of the selected member
+                $id=$_GET['id'];
+
+                // Create SQL Query to get the details
+                $sql="SELECT * FROM user WHERE UID=$id";
+
+                // Execute the query
+                $res=mysqli_query($conn, $sql);
+
+                // Check whether the query is executed or not
+                if($res==TRUE){
+                    // Check whether the data is available or not
+                    $count = mysqli_num_rows($res);
+                    // Check whether we have member data or  not
+                    if($count==1){
+                        // Get the details
+                        // echo "member available";
+                        $row=mysqli_fetch_assoc($res);
+
+                        $username = $row['Username'];
+                    }else{
+                        // Redirect to search members
+                        header('location:'.SITEURL.'manager/search-members.php');
+                    }
+                }
+            ?>
+
             <form action="" method="POST">
                 <table class="tbl-full">
                     <tr>
                         <td>ID: </td>
                         <td>
-                            <?php 
-                                echo $id = $_GET['id'];
-                            ?>
+                            <?php echo $id; ?>
                         </td>
                     </tr>
                     
                     <tr>
                         <td>Username: </td>
                         <td>
-                            <?php 
-                                echo $username = $_GET['username'];
-                            ?>
+                            <?php echo $username; ?>
                         </td>
                     </tr>
 

@@ -43,7 +43,8 @@
                     <th>Title</th>
                     <th>Author</th>
                     <th>Genre</th>
-                    <th>Number of Copies</th>
+                    <th>Copies</th>
+                    <th>Image</th>
                     <th>Actions</th>
                 </tr>
 
@@ -65,6 +66,7 @@
                                 $author = $rows['Author'];
                                 $genre = $rows['Genre'];
                                 $num_copies = $rows['NumofCopies'];
+                                $image_name = $rows['image_name'];
 
                                 ?>
                                 <tr>
@@ -73,6 +75,21 @@
                                     <td><?php echo $author; ?></td>
                                     <td><?php echo $genre; ?></td>
                                     <td><?php echo $num_copies; ?></td>
+                                    <td>
+                                        <?php 
+                                            // Check whether image name is avaible or not
+                                            if($image_name != ""){
+                                                // Display the image
+                                                ?>
+                                                <img src="<?php echo SITEURL; ?>images/books/<?php echo $image_name; ?>" width="100px" >
+
+                                                <?php 
+                                            }else{
+                                                // Display the message
+                                                echo "<div class='error'>Image not added.</div>";
+                                            }
+                                        ?>
+                                    </td>
                                     <td>
                                         <a href="<?php echo SITEURL; ?>manager/edit-book.php?isbn=<?php echo $isbn; ?>" class="btn btn-primary">Edit Book</a>
                                         <a href="<?php echo SITEURL; ?>manager/remove-book.php?isbn=<?php echo $isbn; ?>" class="btn btn-primary">Remove Book</a>
