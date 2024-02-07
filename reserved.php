@@ -1,4 +1,4 @@
-<?php include('partials/header.php'); ?>
+<?php include('partials-front/header.php'); ?>
 
     <!-- Main Section Starts Here -->
     <section class="page-container"> 
@@ -45,4 +45,4 @@
     </section>
     <!-- Main Section Ends Here -->
 
-<?php include('partials/footer.php'); ?>
+<?php include('partials-front/footer.php'); ?>

@@ -1,3 +1,7 @@
+<?php 
+    include('.\config\constants.php');
+?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -22,16 +26,16 @@
                 <div class="header text-right">
                     <ul>
                         <li>
-                            <a href="index.php">Home</a>
+                            <a href="<?php echo SITEURL; ?>">Home</a>
                         </li>
                         <li>
-                            <a href="search-books.php">Search Books</a>
+                            <a href="<?php echo SITEURL; ?>search-books.php">Search Books</a>
                         </li>
                         <li>
-                            <a href="reserved.php">Reserved</a>
+                            <a href="<?php echo SITEURL; ?>reserved.php">Reserved</a>
                         </li>
                         <li>
-                            <a href="profile.php">Profile</a>
+                            <a href="<?php echo SITEURL; ?>profile.php">Profile</a>
                         </li>
                     </ul>
                 </div>

@@ -27,16 +27,16 @@
             <div class="header text-right">
                 <ul>
                     <li>
-                        <a href="index.php">Home</a>
+                        <a href="<?php echo SITEURL; ?>manager/">Home</a>
                     </li>
                     <li>
-                        <a href="search-books.php">Search Books</a>
+                        <a href="<?php echo SITEURL; ?>manager/search-books.php">Search Books</a>
                     </li>
                     <li>
-                        <a href="search-members.php">Search Members</a>
+                        <a href="<?php echo SITEURL; ?>manager/search-members.php">Search Members</a>
                     </li>
                     <li>
-                        <a href="profile.php">Profile</a>
+                        <a href="<?php echo SITEURL; ?>manager/profile.php">Profile</a>
                     </li>
                 </ul>
             </div>

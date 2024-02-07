@@ -92,7 +92,7 @@
                     $res2 = mysqli_query($conn, $sql2);
 
                     // check whether the query is executed 
-                    if($res2==TRUE){        
+                    if($res2==TRUE){
                         // Create a session variable to display message
                         $_SESSION['change-pwd'] = "<div class='success'>Password changed successfully.</div>";
                         // Redirect Page

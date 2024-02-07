@@ -57,7 +57,7 @@
     {
         // Get data from Login form
         $username = $_POST['username'];
-        $password = $_POST['password'];
+        $password = md5($_POST['password']);
 
         // SQL to check whether the user with username and password exists or not
         $sql = "SELECT * FROM user WHERE Username='$username' AND Password='$password'";
