@@ -17,7 +17,7 @@
     <body>
         <!-- Navbar Section Starts Here -->
         <section class="navbar">
-            <div class="container">
+            <div class="nav-container">
                 <div class="logo">
                     <a href="home.php" title="Logo">
                         <img src="images/Trine_logo.jpg" alt="Library System Logo" class="img-logo">

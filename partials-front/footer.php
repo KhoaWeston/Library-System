@@ -1,7 +1,7 @@
 
         <!-- Footer Section Starts Here -->
         <section class="footer">
-            <div class="container text-center">
+            <div class="footer-container text-center">
                 <p>All rights reserved. Designed By <a href="#">Khoa Weston</a></p>
             </div>
         </section>

@@ -6,7 +6,17 @@
             <h2 class="text-center">Place Order</h2>
             
             <?php 
-                // Get the ID of the selected member
+                if(isset($_SESSION['update'])){
+                    echo $_SESSION['update']; // Display message
+                    unset($_SESSION['update']); // Remove message
+                }
+            ?>
+
+            <?php 
+                // Get the ID of the member
+                $id = $_SESSION['user'];
+                
+                // Get the ID of the selected book
                 $isbn=$_GET['isbn'];
 
                 // Create SQL Query to get the details
@@ -38,6 +48,13 @@
 
             <form action="" method="POST">
                 <table class="tbl-full">
+                    <tr>
+                        <td>User ID : </td>
+                        <td>
+                            <?php echo $id; ?>
+                        </td>
+                    </tr>    
+                
                     <tr>
                         <td>ISBN: </td>
                         <td>
@@ -84,27 +101,32 @@
 
 <?php 
     if(isset($_POST['submit']))
-    {
-        // Get the ID of member to be deleted
-        $isbn = $_GET['isbn'];
-            
-        // Create SQL query to delete member
-        // $sql = "DELETE FROM books WHERE BookID=$isbn";
+    {   
+        $from_date = date("Y-m-d H:i:s");
+        $to_date = date('Y-m-d H:i:s', strtotime('+1 week'));
+        
+        // SQL Query to save the data into the database
+        $sql = "INSERT INTO loaned SET
+            UID='$id',
+            BookID='$isbn',
+            LoanDate='$from_date',
+            ToBeReturnedDate='$to_date'
+        ";
 
-        // Execute the query 
-        // $res = mysqli_query($conn, $sql);
+       // Execute query and save data into database
+       $res = mysqli_query($conn, $sql) or die(mysqli_error());
 
-        // Check whether the query executed sucessfully or not
-        if($res==TRUE){
+       // check whether the query is executed 
+       if($res==TRUE){        
             // Create a session variable to display message
-            $_SESSION['delete'] = "<div class='success'>Book deleted successfully.</div>";
+            $_SESSION['ordered'] = "<div class='success'>Checkout Successful</div>";
             // Redirect Page
-            header("location:".SITEURL.'manager/search-books.php');
-        }else{
+            header("location:".SITEURL.'book-catalog.php');
+       }else{
             // Create a session variable to display message
-            $_SESSION['delete'] = "<div class='error'>Failed to delete book.</div>";
+            $_SESSION['ordered'] = "<div class='error'>Failed to checkout.</div>";
             // Redirect Page
-            header("location:".SITEURL.'manager/remove-book.php');
-        }
+            header("location:".SITEURL.'place-order.php');
+       }
     }
 ?>

@@ -4,12 +4,81 @@
     <section class="book-catalog">
         <div class="container">
             <h2 class="text-center">Profile</h2>
-            <p class="profile-user">[name]</p>
-            <p class="profile-user">[card_num]</p>
-            <p class="profile-user">[address]</p>
-            <p class="profile-user">[phone_num]</p>
+            
+            <?php 
+                // Get the ID of the member
+                $id = $_SESSION['user'];
+                
+                
+                // Create SQL Query to get the details
+                $sql="SELECT * FROM user WHERE UID=$id";
 
-            <a href="logout.php" class="btn btn-primary">Logout</a>
+                // Execute the query
+                $res=mysqli_query($conn, $sql);
+
+                // Check whether the query is executed or not
+                if($res==TRUE){
+                    // Check whether the data is available or not
+                    $count = mysqli_num_rows($res);
+                    // Check whether we have member data or  not
+                    if($count==1){
+                        // Get the details
+                        // echo "member available";
+                        $row=mysqli_fetch_assoc($res);
+
+                        $username = $row['Username']; 
+                        $books_out = $row['BooksOut'];
+                        $address = $row['Address']; 
+                        $phone_num = $row['PhoneNum']; 
+                    }else{
+                        // Redirect to search members
+                        header('location:'.SITEURL.'search-books.php');
+                    }
+                }
+            ?>
+
+            <table class="tbl-full">
+                    <tr>
+                        <td>ID: </td>
+                        <td>
+                            <?php echo $id; ?>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Username: </td>
+                        <td>
+                            <?php echo $username; ?>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Address: </td>
+                        <td>
+                            <?php echo $address; ?>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Phone Number: </td>
+                        <td>
+                            <?php echo $phone_num; ?>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Books Reserved: </td>
+                        <td>
+                            <?php echo $books_out; ?>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <a href="login.php" class="btn btn-primary">Logout</a>
+                        </td>
+                    </tr>
+                </table>
         </div>
     </section>
     <!-- Main Section Ends Here -->

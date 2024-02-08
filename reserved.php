@@ -1,48 +1,95 @@
 <?php include('partials-front/header.php'); ?>
 
-    <!-- Main Section Starts Here -->
-    <section class="page-container"> 
+    <!-- Book Catalog Section Starts Here -->
+    <section class="page-container">
         <div class="container">
             <h2 class="text-center">Reserved Books</h2>
 
-            <div class="book-catalog-box">
-                <div class="book-catalog-desc">
-                    <h4>Harry Potter</h4>
-                    <p class="book-author">[author_name]</p>
-                    <br>
-                    
-                    <a href="return-book.php" class="btn btn-primary">Return Now</a>
-                </div>
+            <?php 
+                    // Query to get all members
+                    $sql = "SELECT * FROM loaned";
+                    // Execute the query
+                    $res = mysqli_query($conn, $sql);
 
-                <div class="book-catalog-img">
-                    <p class="book-author">[issue_date]</p>
-                    <p class="book-author">[expire_date]</p>
-                </div>
+                    // Check whether the query is executed or not
+                    if($res==TRUE){
+                        // Count Rows to check whether we have data in the database or not
+                        $count = mysqli_num_rows($res); // Function to get all the rows in the database
 
-                
-            </div>
+                        if($count>0){
+                            while($rows=mysqli_fetch_assoc($res)){
+                                $isbn = $rows['BookID'];
+                                $from_date = $rows['LoanDate'];
+                                $to_date = $rows['ToBeReturnedDate'];
+                                
+                                // Create SQL Query to get the details
+                                $sql2="SELECT * FROM books WHERE BookID=$isbn";
 
-            <div class="book-catalog-box">
-                <div class="book-catalog-desc">
-                    <h4>Percy Jackson</h4>
-                    <p class="book-author">[author_name]</p>
-                    <br>
+                                // Execute the query
+                                $res2=mysqli_query($conn, $sql2);
 
-                    <a href="return-book.php" class="btn btn-primary">Return Now</a>
-                </div>
+                                // Check whether the data is available or not
+                                $count2 = mysqli_num_rows($res2);
+                                // Check whether we have member data or  not
+                                if($count2==1){
+                                    // Get the details
+                                    // echo "member available";
+                                    $rows=mysqli_fetch_assoc($res2);
 
-                <div class="book-catalog-img">
-                    <p class="date-issue">[issue_date]</p>
-                    <p class="date-expire">[expire_date]</p>
-                </div>
+                                    $title = $rows['Title'];
+                                    $author = $rows['Author'];
+                                    $genre = $rows['Genre'];
+                                    $num_copies = $rows['NumofCopies'];
+                                    $image_name = $rows['image_name'];
+                                }
 
+                                ?>
 
-            </div>
+                                <div class="book-catalog-box">
+                                    <div class="book-catalog-img">
+                                        <?php 
+                                            // Check whether image name is avaible or not
+                                            if($image_name != ""){
+                                                // Display the image
+                                                ?>
+                                                <img src="<?php echo SITEURL; ?>images/books/<?php echo $image_name; ?>" class="img-responsive img-curve" >
+
+                                                <?php 
+                                            }else{
+                                                // Display the message
+                                                echo "<div class='error'>Image not added.</div>";
+                                            }
+                                        ?>    
+                                    </div>
+
+                                        <div class="book-catalog-desc">
+                                            <h4><?php echo $title; ?></h4>
+                                            <p class="book-author"><?php echo $author; ?></p>
+                                            <br>
+                                            
+                                            <a href="<?php echo SITEURL; ?>return-book.php?isbn=<?php echo $isbn; ?>" class="btn btn-primary">Return Now</a>
+                                        </div>
+
+                                        <div class="book-catalog-desc">
+                                            <p class="book-author"><?php echo $from_date; ?></p>
+                                            <p class="book-author"><?php echo $to_date; ?></p>
+                                        </div>
+                                </div>
+
+                                
+                                <?php 
+                            }
+                        }else{
+                            // No data
+                        }
+                    }
+                ?>
 
             <div class="clearfix"></div>
 
         </div>
-    </section>
-    <!-- Main Section Ends Here -->
 
-<?php include('partials-front/footer.php'); ?>
+    </section>
+    <!-- Book Catalog Section Ends Here -->
+
+    <?php include('partials-front/footer.php'); ?>

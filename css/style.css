@@ -10,7 +10,8 @@
 .container{
     width: 80%;
     margin: 0 auto;
-    padding: 1%;
+    padding: 1%; 
+    border: 1px solid black;
 }
 .img-logo{
     width: 50%;
@@ -93,8 +94,7 @@ fieldset{
 }
 
 
-/* CSSS for navbar section */
-
+/* CSS for navbar section */
 .logo{
     width: 10%;
     float: left;
@@ -107,6 +107,11 @@ fieldset{
     z-index: 999;
     box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.05);
 }
+.nav-container{
+    width: 80%;
+    margin: 0 auto;
+    padding: 1%; 
+}
 .header ul{
     list-style-type: none;
 }
@@ -118,9 +123,13 @@ fieldset{
 
 /* for footer */
 .footer{
-    
     margin-top: auto;
     box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.05);
+}
+.footer-container{
+    width: 80%;
+    margin: 0 auto;
+    padding: 1%; 
 }
 
 
@@ -147,9 +156,11 @@ fieldset{
 .page-container {
     background-color: rgb(246, 247, 251);
     padding: 4% 0;
-    min-height: 60vh;
+    /* height: 100%; */
+    min-height: 63%;
     display: flex;
     flex-direction: column;
+    border: 1px solid black; /*Test*/
 }
 
 /* for book catalog section */

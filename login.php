@@ -31,7 +31,7 @@
             <!-- Login Form Starts Here -->
             <form action="" method="POST">
                 <div class="txt_field">
-                    <input type="text" name="username"required>
+                    <input type="text" name="username" required>
                     <span></span>
                     <label>Username</label>
                 </div>
@@ -71,7 +71,13 @@
         if($count==1){        
             // User Available and Login Success
             $_SESSION['login'] = "<div class='success'>Login Successful.</div>";
-            $_SESSION['user'] = $username; // to check whether the user is logged in or not and logout will unset it
+            
+            // Create Session with user's id
+            $sql2 = "SELECT * FROM user WHERE Username='$username'";
+            $res2 = mysqli_query($conn, $sql2);
+            $row=mysqli_fetch_assoc($res2);
+            $id = $row['UID'];
+            $_SESSION['user'] = $id; // to check whether the user is logged in or not and logout will unset it
 
             // Redirect Page
             header("location:".SITEURL.'home.php');
