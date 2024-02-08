@@ -10,7 +10,6 @@
             <p class="profile-user">[phone_num]</p>
 
             <a href="logout.php" class="btn btn-primary">Logout</a>
-            <a href="../index.php" class="btn btn-primary">Switch to Member</a>
         </div>
     </section>
     <!-- Main Section Ends Here -->

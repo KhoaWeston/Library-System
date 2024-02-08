@@ -1,6 +1,6 @@
 <?php
     // inlcude constants.php for SITEURL
-    include('../config/constants.php');
+    include('./config/constants.php');
     // Destroy the session
     session_destroy(); //Unsets $_SESSION['user']
 

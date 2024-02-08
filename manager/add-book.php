@@ -91,7 +91,7 @@
 
             // Auto rename our image
             // Get the extension of our image (.jpg...)
-            $ext = end(explode('.', $image_name));
+            $ext = end(explode('.', $image_name)); // NOTICE: Only variables should be passed by reference in
 
             // Rename the image
             $image_name = "Book_cover_".rand(000, 999).'.'.$ext; 
@@ -136,7 +136,7 @@
             // Create a session variable to display message
             $_SESSION['add'] = "<div class='success'>Book added successfully.</div>";
             // Redirect Page
-            header("location:".SITEURL.'manager/search-books.php');
+            header("location:".SITEURL.'manager/search-books.php'); // WARNING: Cannot modify header information - headers already sent by (output started at Line 94) 
        }else{
             // Create a session variable to display message
             $_SESSION['add'] = "<div class='error'>Failed to add book.</div>";

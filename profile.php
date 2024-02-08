@@ -9,8 +9,7 @@
             <p class="profile-user">[address]</p>
             <p class="profile-user">[phone_num]</p>
 
-            <a href="login.php" class="btn btn-primary">Logout</a>
-            <a href="./manager/index.php" class="btn btn-primary">Switch to Manager</a>
+            <a href="logout.php" class="btn btn-primary">Logout</a>
         </div>
     </section>
     <!-- Main Section Ends Here -->

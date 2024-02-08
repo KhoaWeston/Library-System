@@ -14,7 +14,7 @@
 
     <body>
         <div class="center">
-            <h1>Login</h1>
+            <h1>Manager Login</h1>
 
             <?php 
                 if(isset($_SESSION['login'])){
@@ -29,7 +29,7 @@
             ?>
 
             <!-- Login Form Starts Here -->
-            <form action"" method="POST">
+            <form action="" method="POST">
                 <div class="txt_field">
                     <input type="text" name="username"required>
                     <span></span>
@@ -43,7 +43,7 @@
                 <div class="pass">Forgot Password?</div>
                 <div class="text-center"><input type="submit" name="submit" value="Login"></div>
                 <div class="signup_link">
-                    Not a member? <a href="index.php">Signup</a>
+                    Not a member? <a href="#">Signup</a>
                 </div>
             </form>
             <!-- Login Form Ends Here -->

@@ -19,7 +19,7 @@
     <section class="navbar">
         <div class="container">
             <div class="logo">
-                <a href="index.php" title="Logo">
+                <a href="home.php" title="Logo">
                     <img src="../images/Trine_logo.jpg" alt="Library System Logo" class="img-logo">
                 </a>
             </div>
@@ -27,7 +27,7 @@
             <div class="header text-right">
                 <ul>
                     <li>
-                        <a href="<?php echo SITEURL; ?>manager/">Home</a>
+                        <a href="<?php echo SITEURL; ?>manager/home.php">Home</a>
                     </li>
                     <li>
                         <a href="<?php echo SITEURL; ?>manager/search-books.php">Search Books</a>
