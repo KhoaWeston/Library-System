@@ -1,8 +1,8 @@
 <?php include('partials-front/header.php'); ?>
 
     <!-- Main Section Starts Here -->
-    <section class="book-catalog">
-        <div class="container">
+    <section class="page-container text-center">
+        <div class="confirm-container">
             <h2 class="text-center">Profile</h2>
             
             <?php 
@@ -37,48 +37,44 @@
                 }
             ?>
 
-            <table class="tbl-full">
+            <table class="tbl width-full">
                     <tr>
-                        <td>ID: </td>
+                        <td class="text-bold">ID: </td>
                         <td>
                             <?php echo $id; ?>
                         </td>
                     </tr>
                     
                     <tr>
-                        <td>Username: </td>
+                        <td class="text-bold">Username: </td>
                         <td>
                             <?php echo $username; ?>
                         </td>
                     </tr>
 
                     <tr>
-                        <td>Address: </td>
+                        <td class="text-bold">Address: </td>
                         <td>
                             <?php echo $address; ?>
                         </td>
                     </tr>
 
                     <tr>
-                        <td>Phone Number: </td>
+                        <td class="text-bold">Phone Number: </td>
                         <td>
                             <?php echo $phone_num; ?>
                         </td>
                     </tr>
 
                     <tr>
-                        <td>Books Reserved: </td>
+                        <td class="text-bold">Books Reserved: </td>
                         <td>
                             <?php echo $books_out; ?>
                         </td>
                     </tr>
-
-                    <tr>
-                        <td>
-                            <a href="login.php" class="btn btn-primary">Logout</a>
-                        </td>
-                    </tr>
                 </table>
+                <a href="login.php" class="btn btn-primary">Logout</a>
+
         </div>
     </section>
     <!-- Main Section Ends Here -->

@@ -8,7 +8,7 @@
                 $search = $_POST['search'];
             ?>  
             
-            <h2 class="text-white">Books on your search <a href="#" class="text-white">"<?php echo $search;?>"</a></h2>
+            <h2 class="">Books on your search <a href="#" class="">"<?php echo $search;?>"</a></h2>
 
         </div>
     </section>
@@ -19,7 +19,10 @@
         <div class="container">
             <?php
                 //SQL Query to get foods based on search keyword
-                $sql = "SELECT * FROM books WHERE Title LIKE '%$search%'";
+                $sql = "SELECT * FROM books WHERE 
+                Title LIKE '%$search%' OR 
+                Genre LIKE '%$search%' OR 
+                Author LIKE '%$search%'";
                 
                 // Execute the query
                 $res = mysqli_query($conn, $sql);
@@ -58,15 +61,42 @@
                             </div>
 
                             <div class="book-catalog-desc">
-                                <h4><?php echo $title; ?></h4>
-                                <p class="book-author"><?php echo $author; ?></p>
-                                <p class="book-ISBN"><?php echo $isbn; ?></p>
-                                <p class="book-num-copies"><?php echo $num_copies; ?></p>
-                                <p class="book-num-copies"><?php echo $genre; ?></p>
-                                <p class="book-detail">
-                                    [Description]
-                                </p>
-                                <br>
+                                <table class="tbl width-full">
+                                    <tr>
+                                        <td class="text-bold">Title: </td>
+                                        <td>
+                                            <?php echo $title; ?>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="text-bold">Author: </td>
+                                        <td>
+                                            <?php echo $author; ?>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-bold">ISBN: </td>
+                                        <td>
+                                            <?php echo $isbn; ?>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-bold">Number of Copies: </td>
+                                        <td>
+                                            <?php echo $num_copies; ?>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="text-bold">Genre: </td>
+                                        <td>
+                                            <?php echo $genre; ?>
+                                        </td>
+                                    </tr>
+                                </table>
 
                                 <a href="<?php echo SITEURL; ?>place-order.php?isbn=<?php echo $isbn; ?>" class="btn btn-primary">Order Now</a>
                             </div>

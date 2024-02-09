@@ -62,18 +62,39 @@
                                         ?>    
                                     </div>
 
-                                        <div class="book-catalog-desc">
-                                            <h4><?php echo $title; ?></h4>
-                                            <p class="book-author"><?php echo $author; ?></p>
-                                            <br>
+                                    <div class="book-catalog-desc">
+                                        <table class="tbl width-full">
+                                            <tr>
+                                                <td class="text-bold">Title: </td>
+                                                <td>
+                                                    <?php echo $title; ?>
+                                                </td>
+                                            </tr>
                                             
-                                            <a href="<?php echo SITEURL; ?>return-book.php?isbn=<?php echo $isbn; ?>" class="btn btn-primary">Return Now</a>
-                                        </div>
+                                            <tr>
+                                                <td class="text-bold">Author: </td>
+                                                <td>
+                                                    <?php echo $author; ?>
+                                                </td>
+                                            </tr>
 
-                                        <div class="book-catalog-desc">
-                                            <p class="book-author"><?php echo $from_date; ?></p>
-                                            <p class="book-author"><?php echo $to_date; ?></p>
-                                        </div>
+                                            <tr>
+                                                <td class="text-bold">Date Checked Out: </td>
+                                                <td>
+                                                    <?php echo $from_date; ?>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="text-bold">Return Date: </td>
+                                                <td>
+                                                    <?php echo $to_date; ?>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <a href="<?php echo SITEURL; ?>return-book.php?isbn=<?php echo $isbn; ?>" class="btn btn-primary">Return Now</a>
+                                    </div>
+
                                 </div>
 
                                 

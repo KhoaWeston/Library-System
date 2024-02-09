@@ -8,7 +8,7 @@
         <meta charset="UTF-8">
         <!-- Important to make website responsive -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ShavySavvy</title>
+        <title>ShelfSavvy</title>
 
         <!-- Link our CSS file -->
         <link rel="stylesheet" href="css/style.css">
@@ -24,7 +24,7 @@
                     </a>
                 </div>
 
-                <div class="header text-right">
+                <div class="tabs-container text-right">
                     <ul>
                         <li>
                             <a href="<?php echo SITEURL; ?>home.php">Home</a>

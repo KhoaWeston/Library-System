@@ -1,8 +1,8 @@
 <?php include('partials-front/header.php'); ?>
 
     <!-- Main Section Starts Here -->
-    <section class="book-catalog">
-        <div class="container">
+    <section class="page-container text-center">
+        <div class="confirm-container">
             <h2 class="text-center">Return Book</h2>
             
             <?php 
@@ -29,6 +29,7 @@
                         $author = $row['Author'];
                         $genre = $row['Genre']; 
                         $num_copies = $row['NumofCopies']; 
+                        $image_name = $row['image_name'];
                     }else{
                         // Redirect to search members
                         header('location:'.SITEURL.'/search-books.php');
@@ -36,47 +37,70 @@
                 }
             ?>
 
-            <form action="" method="POST">
-                <table class="tbl-full">
-                    <tr>
-                        <td>ISBN: </td>
-                        <td>
-                            <?php echo $isbn; ?>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td>Title: </td>
-                        <td>
-                            <?php echo $title; ?>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td>Author: </td>
-                        <td>
-                            <?php echo $author; ?>
-                        </td>
-                    </tr>
+            <table class="tbl-confirm width-full">
+                <tr>
+                    <td>
+                        <div class="img-confirm">
+                            <?php 
+                                // Check whether image name is avaible or not
+                                if($image_name != ""){
+                                    // Display the image
+                                    ?>
+                                    <img src="<?php echo SITEURL; ?>images/books/<?php echo $image_name; ?>" class="img-responsive img-curve" >
 
-                    <tr>
-                        <td>Number of Copies: </td>
-                        <td>
-                            <?php echo $num_copies; ?>
-                        </td>
-                    </tr>
+                                    <?php 
+                                }else{
+                                    // Display the message
+                                    echo "<div class='error'>Image not added.</div>";
+                                }
+                            ?>    
+                        </div>
+                    </td>
+                
+                    <td>
+                        <form action="" method="POST" class="confirm-desc">
+                            <table class="tbl width-full">
+                                <tr>
+                                    <td class="text-bold">ISBN: </td>
+                                    <td>
+                                        <?php echo $isbn; ?>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="text-bold">Title: </td>
+                                    <td>
+                                        <?php echo $title; ?>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="text-bold">Author: </td>
+                                    <td>
+                                        <?php echo $author; ?>
+                                    </td>
+                                </tr>
 
-                    <tr>
-                        <td colspan="2">
-                            <input type="submit" name="submit" value="Confirm" class="btn btn-primary">
-                        </td>
-                        <td>
-                            <a href="search-books.php" class="btn btn-primary">Cancel</a>
-                        </td>
-                    </tr>
-                </table>
-            </form>
-            
+                                <tr>
+                                    <td class="text-bold">Number of Copies: </td>
+                                    <td>
+                                        <?php echo $num_copies; ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <input type="submit" name="submit" value="Confirm" class="btn btn-primary">
+                                    </td>
+                                    <td>
+                                        <a href="book-catalog.php" class="btn btn-primary">Cancel</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </td>
+                </tr>
+            </table>
         </div>
     </section>
     <!-- Main Section Ends Here -->

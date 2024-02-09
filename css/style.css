@@ -7,11 +7,17 @@
     padding: 0 0;
     font-family: 'Nunito', sans-serif;
 }
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height:100vh;
+}
 .container{
     width: 80%;
     margin: 0 auto;
     padding: 1%; 
-    border: 1px solid black;
 }
 .img-logo{
     width: 50%;
@@ -35,10 +41,18 @@
 .text-white{
     color: white;
 }
-
+.text-bold{
+    font-weight: bold;
+}
+.width-full{
+    width:100%;
+}
 .clearfix{
     clear: both;
     float: none;
+}
+.indent{
+    margin-left:20px;
 }
 
 a{
@@ -50,21 +64,21 @@ a:hover{
 }
 
 .btn{
-    margin-bottom: 20px;
-
-    padding: 1%;
-    border: none;
+    /* margin-bottom: 20px; */
+    padding: 10px;
     font-size: 1rem;
     border-radius: 5px;
+    border: none;
 }
 .btn-primary{
-    background-color: hsl(209, 70%, 40%);
+    background-color: rgb(66, 85, 255);
     color: white;
     cursor: pointer;
 }
 .btn-primary:hover{
+    background-color: rgb(66, 62, 216);
     color: white;
-    background-color: hsl(209, 100%, 40%);
+    transition: 0.5s;
 }
 h2{
     color: #2f3542;
@@ -92,6 +106,40 @@ fieldset{
     border: 5px solid black;
     margin: auto;
 }
+.confirm-container{
+    width: 35%;
+    margin: 0 auto;
+    padding: 50px; 
+    border-radius: 25px;
+    box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.05); /* x_translate, y_translate, fade, size */
+}
+.page-container {
+    background-color: rgb(246, 247, 251);
+    padding: 4% 0;
+    flex-grow: 1;
+}
+
+/* CSS for table */
+.tbl{
+    margin-bottom: 20px;
+}
+.tbl td{
+    width: 50%;
+}
+.tbl-confirm td{
+    width: 10%;
+}
+.tbl-confirm{
+    margin-bottom: 0px;
+}
+.img-confirm{
+    margin: auto;
+    width: 60%;
+}
+.confirm-desc{
+    width: 100%;
+    float: left;
+}
 
 
 /* CSS for navbar section */
@@ -99,33 +147,32 @@ fieldset{
     width: 10%;
     float: left;
 }
-.header{
-    line-height: 60px;
-}
 .navbar{
-    position: relative; 
     z-index: 999;
-    box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.05);
+    box-shadow: 0px 1px 10px -5px black;
 }
 .nav-container{
     width: 80%;
     margin: 0 auto;
     padding: 1%; 
 }
-.header ul{
+.tabs-container{
+    line-height: 60px;
+}
+.tabs-container ul{
     list-style-type: none;
 }
-.header ul li{
+.tabs-container ul li{
     display: inline;
     padding: 1%;
     font-weight: bold;
 }
 
-/* for footer */
+
+/* CSS for footer section */
 .footer{
-    margin-top: auto;
-    box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.05);
-}
+    box-shadow: 0px -1px 10px -5px black;
+}   
 .footer-container{
     width: 80%;
     margin: 0 auto;
@@ -134,9 +181,8 @@ fieldset{
 
 
 /* CSS for Book Search Section */
-
 .book-search{
-    background-image: url(../images/book-background1.jpg);
+    background-image: url(../images/search-background.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -152,17 +198,6 @@ fieldset{
 }
 
 
-/* CSS for Window Container */
-.page-container {
-    background-color: rgb(246, 247, 251);
-    padding: 4% 0;
-    /* height: 100%; */
-    min-height: 63%;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black; /*Test*/
-}
-
 /* for book catalog section */
 .book-catalog-box{
     width: 43%;
@@ -172,10 +207,10 @@ fieldset{
     background-color: white;
     border-radius: 15px;
     box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.05);
-
 }
 
 .book-catalog-img{
+    height: auto;
     width: 20%;
     float: left;
 }
@@ -201,6 +236,7 @@ fieldset{
     font-size: 1rem;
     color: #747d8c;
 }
+
 
 /* for Login Window */
 .center{
@@ -272,22 +308,6 @@ form .txt_field{
 }
 .pass:hover{
     text-decoration: underline;
-}
-input[type="submit"]{
-    width: 100px;
-    height: 50px;
-    border: 1px solid #2691d9;
-    background: #2691d9;
-    border-radius: 25px;
-    font-size: 18px;
-    color: #e9f4fb;
-    font-weight: 700;
-    cursor: pointer;
-    outline: none;
-}
-input[type="submit"]:hover{
-    border-color: #2691d9;
-    transition: .5s;
 }
 .signup_link{
     margin: 30px 0;

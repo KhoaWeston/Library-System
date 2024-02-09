@@ -10,6 +10,7 @@
         
         <!-- Link our CSS file -->
         <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/login.css">
     </head>
 
     <body>
@@ -41,7 +42,10 @@
                     <label>Password</label>
                 </div>
                 <div class="pass">Forgot Password?</div>
-                <div class="text-center"><input type="submit" name="submit" value="Login"></div>
+                <div class="text-center">
+                    <input type="submit" name="submit" value="Login" class="btn btn-primary">
+                    <a href="<?php echo SITEURL; ?>" class="btn btn-primary">Go Back</a>
+                </div>
                 <div class="signup_link">
                     Not a member? <a href="#">Signup</a>
                 </div>
