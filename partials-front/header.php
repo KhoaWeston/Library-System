@@ -12,6 +12,7 @@
 
         <!-- Link our CSS file -->
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/member.css">
     </head>
 
     <body>

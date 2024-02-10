@@ -5,6 +5,7 @@
             <div class="container">
                 <h2 class="text-center">ShelfSavvy</h2>
                 <p>This is a library management system. </p>
+                <div class="comp-container"> This will be a dashboard</div>
             </div>
         </section>
         <!-- Main Section Ends Here -->

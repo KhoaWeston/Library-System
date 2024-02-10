@@ -37,43 +37,43 @@
                 }
             ?>
 
-            <table class="tbl width-full">
-                    <tr>
-                        <td class="text-bold">ID: </td>
-                        <td>
-                            <?php echo $id; ?>
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="text-bold">Username: </td>
-                        <td>
-                            <?php echo $username; ?>
-                        </td>
-                    </tr>
+            <!-- <table class="tbl width-full">
+                <tr>
+                    <td class="text-bold">ID: </td>
+                    <td>
+                        <?php echo $id; ?>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="text-bold">Username: </td>
+                    <td>
+                        <input type="text" name="username" value="<?php echo $username; ?>">
+                    </td>
+                </tr>
 
-                    <tr>
-                        <td class="text-bold">Address: </td>
-                        <td>
-                            <?php echo $address; ?>
-                        </td>
-                    </tr>
+                <tr>
+                    <td class="text-bold">Address: </td>
+                    <td>
+                        <input type="text" name="address" value="<?php echo $address; ?>">
+                    </td>
+                </tr>
 
-                    <tr>
-                        <td class="text-bold">Phone Number: </td>
-                        <td>
-                            <?php echo $phone_num; ?>
-                        </td>
-                    </tr>
+                <tr>
+                    <td class="text-bold">Phone Number: </td>
+                    <td>
+                        <input type="number" name="phone_num" value="<?php echo $phone_num; ?>">
+                    </td>
+                </tr>
 
-                    <tr>
-                        <td class="text-bold">Books Reserved: </td>
-                        <td>
-                            <?php echo $books_out; ?>
-                        </td>
-                    </tr>
-                </table>
-                <a href="login.php" class="btn btn-primary">Logout</a>
+                <tr>
+                    <td class="text-bold">Books Reserved: </td>
+                    <td>
+                        <?php echo $books_out; ?>
+                    </td>
+                </tr>
+            </table> -->
+            <a href="logout.php" class="btn btn-primary">Logout</a>
 
         </div>
     </section>

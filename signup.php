@@ -15,7 +15,7 @@
 
     <body>
         <div class="center">
-            <h1>Member Login</h1>
+            <h1>Member Signup</h1>
 
             <?php 
                 if(isset($_SESSION['login'])){
@@ -23,9 +23,9 @@
                     unset($_SESSION['login']); // Remove message
                 }
 
-                if(isset($_SESSION['no-login-member'])){
-                    echo $_SESSION['no-login-member']; // Display message
-                    unset($_SESSION['no-login-member']); // Remove message
+                if(isset($_SESSION['no-login-message'])){
+                    echo $_SESSION['no-login-message']; // Display message
+                    unset($_SESSION['no-login-message']); // Remove message
                 }
             ?>
 
@@ -41,14 +41,21 @@
                     <span></span>
                     <label>Password</label>
                 </div>
-                <!-- <div class="pass">Forgot Password?</div> -->
+                <div class="txt_field">
+                    <input type="text" name="address" required>
+                    <span></span>
+                    <label>Address</label>
+                </div>
+                <div class="txt_field">
+                    <input type="number" name="phone_num" required>
+                    <span></span>
+                    <label>Phone Number</label>
+                </div>
                 <div class="text-center">
-                    <input type="submit" name="submit" value="Login" class="btn btn-primary">
-                    <a href="<?php echo SITEURL; ?>" class="btn btn-primary">Go Back</a>
+                    <input type="submit" name="submit" value="Signup" class="btn btn-primary">
+                    <a href="<?php echo SITEURL; ?>login.php" class="btn btn-primary">Go Back</a>
                 </div>
-                <div class="signup_link">
-                    Not a member? <a href="<?php echo SITEURL; ?>/signup.php">Signup</a>
-                </div>
+                <br/><br/>
             </form>
             <!-- Login Form Ends Here -->
 
@@ -59,22 +66,27 @@
 <?php 
     if(isset($_POST['submit']))
     {
-        // Get data from Login form
+        // Get data from form
         $username = $_POST['username'];
-        $password = md5($_POST['password']);
+        $password = md5($_POST['password']); // password encryption
+        $address = $_POST['address'];
+        $phone_num = $_POST['phone_num']; 
 
-        // SQL to check whether the user with username and password exists or not
-        $sql = "SELECT * FROM user WHERE Username='$username' AND Password='$password'";
+        // SQL Query to save the data into the database
+        $sql = "INSERT INTO user SET
+            Username='$username',
+            Password='$password',
+            Address='$address',
+            PhoneNum='$phone_num'
+        ";
 
-        // Execute query and save data into database
-        $res = mysqli_query($conn, $sql);
+       // Execute query and save data into database
+       $res = mysqli_query($conn, $sql) or die(mysqli_error());
 
-        $count = mysqli_num_rows($res);
-
-        // check whether the query is executed 
-        if($count==1){        
-            // User Available and Login Success
-            $_SESSION['login'] = "<div class='success'>Login Successful.</div>";
+       // check whether the query is executed 
+       if($res==TRUE){        
+            // Create a session variable to display message
+            $_SESSION['signup'] = "<div class='success'>Member signup successful.</div>";
             
             // Create Session with user's id
             $sql2 = "SELECT * FROM user WHERE Username='$username'";
@@ -85,11 +97,11 @@
 
             // Redirect Page
             header("location:".SITEURL.'home.php');
-        }else{
-            // User not available and Login fail
-            $_SESSION['login'] = "<div class='error'>Username or Password did not match.</div>";
+       }else{
+            // Create a session variable to display message
+            $_SESSION['add'] = "<div class='error'>Failed to signup.</div>";
             // Redirect Page
-            header("location:".SITEURL.'login.php');
-        }
+            header("location:".SITEURL.'signup.php');
+       }
     }
 ?>

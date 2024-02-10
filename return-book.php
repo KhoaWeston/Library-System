@@ -6,40 +6,52 @@
             <h2 class="text-center">Return Book</h2>
             
             <?php 
-                // Get the ID of the selected member
+                // Get the isbn of the selected book
                 $isbn=$_GET['isbn'];
 
                 // Create SQL Query to get the details
-                $sql="SELECT * FROM books WHERE BookID=$isbn";
+                $sql1="SELECT * FROM books WHERE BookID=$isbn";
 
                 // Execute the query
-                $res=mysqli_query($conn, $sql);
+                $res1=mysqli_query($conn, $sql1);
 
                 // Check whether the query is executed or not
-                if($res==TRUE){
+                if($res1==TRUE){
                     // Check whether the data is available or not
-                    $count = mysqli_num_rows($res);
+                    $count1 = mysqli_num_rows($res1);
                     // Check whether we have member data or  not
-                    if($count==1){
+                    if($count1==1){
                         // Get the details
-                        // echo "member available";
-                        $row=mysqli_fetch_assoc($res);
+                        $row1=mysqli_fetch_assoc($res1);
+                        
+                        // Create SQL Query to get the details
+                        $sql2="SELECT * FROM loaned WHERE BookID=$isbn";
 
-                        $title = $row['Title']; 
-                        $author = $row['Author'];
-                        $genre = $row['Genre']; 
-                        $num_copies = $row['NumofCopies']; 
-                        $image_name = $row['image_name'];
+                        // Execute the query
+                        $res2=mysqli_query($conn, $sql2);
+
+                        // Get the details
+                        $row2=mysqli_fetch_assoc($res2);
+
+
+                        $title = $row1['Title']; 
+                        $author = $row1['Author'];
+                        $genre = $row1['Genre']; 
+                        $num_copies = $row1['NumofCopies']; 
+                        $image_name = $row1['image_name'];
+
+                        $from_date = $row2['LoanDate'];
+                        $to_date = $row2['ToBeReturnedDate'];
                     }else{
                         // Redirect to search members
-                        header('location:'.SITEURL.'/search-books.php');
+                        header('location:'.SITEURL.'/reserved.php');
                     }
                 }
             ?>
 
             <table class="tbl-confirm width-full">
                 <tr>
-                    <td>
+                    <td class="confirm-col-img">
                         <div class="img-confirm">
                             <?php 
                                 // Check whether image name is avaible or not
@@ -58,7 +70,7 @@
                     </td>
                 
                     <td>
-                        <form action="" method="POST" class="confirm-desc">
+                        <form action="" method="POST">
                             <table class="tbl width-full">
                                 <tr>
                                     <td class="text-bold">ISBN: </td>
@@ -82,9 +94,16 @@
                                 </tr>
 
                                 <tr>
-                                    <td class="text-bold">Number of Copies: </td>
+                                    <td class="text-bold">Date Checked Out: </td>
                                     <td>
-                                        <?php echo $num_copies; ?>
+                                        <?php echo $from_date; ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="text-bold">Return Date: </td>
+                                    <td>
+                                        <?php echo $to_date; ?>
                                     </td>
                                 </tr>
 
@@ -93,7 +112,7 @@
                                         <input type="submit" name="submit" value="Confirm" class="btn btn-primary">
                                     </td>
                                     <td>
-                                        <a href="book-catalog.php" class="btn btn-primary">Cancel</a>
+                                        <a href="reserved.php" class="btn btn-primary">Cancel</a>
                                     </td>
                                 </tr>
                             </table>

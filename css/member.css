@@ -1,0 +1,65 @@
+
+/* CSS for table */
+.tbl{
+    margin-bottom: 20px;
+}
+.tbl td{
+    width: 50%;
+}
+.tbl-confirm{
+    margin-bottom: 0px;
+}
+.img-confirm{
+    margin: auto;
+    width: 70%;
+}
+.confirm-desc{
+    width: 100%;
+    float: left;
+}
+.confirm-col-img{
+    width: 40%;
+}
+
+/* CSS for Book Search Section */
+.book-search{
+    background-image: url(../images/search-background.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 7% 0;
+    z-index: 99;
+    box-shadow: 0px 1px 10px -5px black;
+}
+
+.book-search input[type="search"]{
+    width: 50%;
+    padding: 1%;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+}
+
+
+/* for book catalog section */
+.book-catalog-box{
+    width: 43%;
+    margin: 1%;
+    padding: 2%;
+    float: left;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.05);
+}
+
+.book-catalog-img{
+    height: auto;
+    width: 20%;
+    float: left;
+}
+
+.book-catalog-desc{
+    width: 70%;
+    float: left;
+    margin-left: 8%;
+}

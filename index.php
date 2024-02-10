@@ -14,25 +14,14 @@
     </head>
 
     <body>
-        <div class="center">
+        <div class="center text-center">
             <h1>What user type?</h1>
-
-            <?php 
-                if(isset($_SESSION['login'])){
-                    echo $_SESSION['login']; // Display message
-                    unset($_SESSION['login']); // Remove message
-                }
-
-                if(isset($_SESSION['no-login-message'])){
-                    echo $_SESSION['no-login-message']; // Display message
-                    unset($_SESSION['no-login-message']); // Remove message
-                }
-            ?>
-
+            <br/><br/>
             <!-- Login Form Starts Here -->
-            <a href="<?php echo SITEURL; ?>login.php" class="btn btn-primary">member</a>
-            <a href="<?php echo SITEURL; ?>manager/login.php" class="btn btn-primary">Manager</a>
-
+            <div>
+                <a href="<?php echo SITEURL; ?>login.php" class="btn btn-primary">Member</a>
+                <a href="<?php echo SITEURL; ?>manager/login.php" class="btn btn-primary">Manager</a>
+            </div>
             <!-- Login Form Ends Here -->
 
         </div>

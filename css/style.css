@@ -64,7 +64,6 @@ a:hover{
 }
 
 .btn{
-    /* margin-bottom: 20px; */
     padding: 10px;
     font-size: 1rem;
     border-radius: 5px;
@@ -118,29 +117,14 @@ fieldset{
     padding: 4% 0;
     flex-grow: 1;
 }
-
-/* CSS for table */
-.tbl{
-    margin-bottom: 20px;
-}
-.tbl td{
-    width: 50%;
-}
-.tbl-confirm td{
-    width: 10%;
-}
-.tbl-confirm{
-    margin-bottom: 0px;
-}
-.img-confirm{
+.comp-container{
+    width: auto;
     margin: auto;
-    width: 60%;
+    margin-top: 50px;
+    padding: 50px; 
+    border-radius: 25px;
+    box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.05); /* x_translate, y_translate, fade, size */
 }
-.confirm-desc{
-    width: 100%;
-    float: left;
-}
-
 
 /* CSS for navbar section */
 .logo{
@@ -168,7 +152,6 @@ fieldset{
     font-weight: bold;
 }
 
-
 /* CSS for footer section */
 .footer{
     box-shadow: 0px -1px 10px -5px black;
@@ -179,146 +162,13 @@ fieldset{
     padding: 1%; 
 }
 
-
-/* CSS for Book Search Section */
-.book-search{
-    background-image: url(../images/search-background.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    padding: 7% 0;
-}
-
-.book-search input[type="search"]{
-    width: 50%;
-    padding: 1%;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-}
-
-
-/* for book catalog section */
-.book-catalog-box{
-    width: 43%;
-    margin: 1%;
-    padding: 2%;
-    float: left;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.05);
-}
-
-.book-catalog-img{
-    height: auto;
-    width: 20%;
-    float: left;
-}
-
-.book-catalog-desc{
-    width: 70%;
-    float: left;
-    margin-left: 8%;
-}
-.book-author{
-    font-size: 1.2rem;
-    margin: 2% 0;
-}
-.book-ISBN{
-    font-size: 1.2rem;
-    margin: 2% 0;
-}
-.book-num-copies{
-    font-size: 1.2rem;
-    margin: 2% 0;
-}
-.book-detail{
-    font-size: 1rem;
-    color: #747d8c;
-}
-
-
-/* for Login Window */
-.center{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.05);
-}
-.center h1{
+/* CSS for session format */
+.error{
+    color: red;
     text-align: center;
-    padding: 20px 0;
-    border-bottom: 1px solid silver;
 }
-.center form{
-    padding: 0 40px;
-    box-sizing: border-box;
-}
-form .txt_field{
-    position: relative;
-    border-bottom: 2px solid #adadad;
-    margin: 30px 0;
-}
-.txt_field input{
-    width: 100%;
-    padding: 0 5px;
-    height: 40px;
-    font-size: 16px;
-    border: none;
-    background: none;
-    outline: none;
-}
-.txt_field label{
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    color: #adadad;
-    transform: translateY(-50%);
-    font-size: 16px;
-    pointer-events: none;
-    transition: .5s;
-}
-.txt_field span::before{
-    content: '';
-    position: absolute;
-    top: 40px;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background: #2691d9;
-    transition: .5s;
-}
-.txt_field input:focus ~ label,
-.txt_field input:valid ~ label{
-    top: -5px;
-    color: #2691d9;
-}
-.txt_field input:focus ~ span::before,
-.txt_field input:valid ~ span::before{
-    width: 100%;
-}
-.pass{
-    margin: -5px 0 20px 5px;
-    color: #a6a6a6;
-    cursor: pointer;
-}
-.pass:hover{
-    text-decoration: underline;
-}
-.signup_link{
-    margin: 30px 0;
+
+.error{
+    color: green;
     text-align: center;
-    font-size: 16px;
-    color: #666666;
-}
-.signup_link a{
-    color: #2691d9;
-    text-decoration: none;
-}
-.signup_link a:hover{
-    text-decoration: underline;
 }

@@ -11,6 +11,7 @@
     <title>ShelfSavvy</title>
 
     <!-- Link our CSS file -->
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/manager.css">
 </head>
 

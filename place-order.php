@@ -49,7 +49,7 @@
 
             <table class="tbl-confirm width-full">
                 <tr>
-                    <td>
+                    <td class="confirm-col-img">
                         <div class="img-confirm">
                             <?php 
                                 // Check whether image name is avaible or not
@@ -68,7 +68,7 @@
                     </td>
                 
                     <td>
-                        <form action="" method="POST" class="confirm-desc">
+                        <form action="" method="POST">
                             <table class="tbl width-full">
                                 <tr>
                                     <td class="text-bold">User ID : </td>
@@ -110,7 +110,7 @@
                                         <input type="submit" name="submit" value="Confirm" class="btn btn-primary">
                                     </td>
                                     <td>
-                                        <a href="search-books.php" class="btn btn-primary">Cancel</a>
+                                        <a href="book-catalog.php" class="btn btn-primary">Cancel</a>
                                     </td>
                                 </tr>
                             </table>
