@@ -17,98 +17,77 @@
     <!-- Book Catalog Section Starts Here -->
     <section class="page-container">
         <div class="container">
-            <?php
-                //SQL Query to get foods based on search keyword
-                $sql = "SELECT * FROM books WHERE 
-                Title LIKE '%$search%' OR 
-                Genre LIKE '%$search%' OR 
-                Author LIKE '%$search%'";
-                
-                // Execute the query
-                $res = mysqli_query($conn, $sql);
+        <table class="tbl-full">
+                <tr>
+                    <th>ISBN</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Copies</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                </tr>
 
-                // Count rows
-                $count = mysqli_num_rows($res);
+                <?php 
+                    //SQL Query to get foods based on search keyword
+                    $sql = "SELECT * FROM books WHERE 
+                    Title LIKE '%$search%' OR 
+                    Genre LIKE '%$search%' OR 
+                    Author LIKE '%$search%'";
+                    
+                    // Execute the query
+                    $res = mysqli_query($conn, $sql);
 
-                // Check whether book available
-                if($count>0){
-                    // Food available
-                    while($row=mysqli_fetch_assoc($res)){
-                        // Get the details
-                        $isbn = $row['BookID'];
-                        $title = $row['Title'];
-                        $author = $row['Author'];
-                        $genre = $row['Genre'];
-                        $num_copies = $row['NumofCopies'];
-                        $image_name = $row['image_name'];
-                        ?>
+                    // Check whether the query is executed or not
+                    if($res==TRUE){
+                        // Count Rows to check whether we have data in the database or not
+                        $count = mysqli_num_rows($res); // Function to get all the rows in the database
 
-                        <div class="book-catalog-box">
-                            <div class="book-catalog-img">
-                                <?php 
-                                    // Check whether image name is avaible or not
-                                    if($image_name != ""){
-                                        // Display the image
-                                        ?>
-                                        <img src="<?php echo SITEURL; ?>images/books/<?php echo $image_name; ?>" class="img-responsive img-curve" >
+                        if($count>0){
+                            while($rows=mysqli_fetch_assoc($res)){
+                                $isbn = $rows['BookID'];
+                                $title = $rows['Title'];
+                                $author = $rows['Author'];
+                                $genre = $rows['Genre'];
+                                $num_copies = $rows['NumofCopies'];
+                                $image_name = $rows['image_name'];
 
+                                ?>
+                                <tr>
+                                    <td><?php echo $isbn; ?></td>
+                                    <td><?php echo $title; ?></td>
+                                    <td><?php echo $author; ?></td>
+                                    <td><?php echo $genre; ?></td>
+                                    <td><?php echo $num_copies; ?></td>
+                                    <td>
                                         <?php 
-                                    }else{
-                                        // Display the message
-                                        echo "<div class='error'>Image not added.</div>";
-                                    }
-                                ?>    
-                            </div>
+                                            // Check whether image name is avaible or not
+                                            if($image_name != ""){
+                                                // Display the image
+                                                ?>
+                                                <img src="<?php echo SITEURL; ?>images/books/<?php echo $image_name; ?>" width="100px" >
 
-                            <div class="book-catalog-desc">
-                                <table class="tbl width-full">
-                                    <tr>
-                                        <td class="text-bold">Title: </td>
-                                        <td>
-                                            <?php echo $title; ?>
-                                        </td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class="text-bold">Author: </td>
-                                        <td>
-                                            <?php echo $author; ?>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="text-bold">ISBN: </td>
-                                        <td>
-                                            <?php echo $isbn; ?>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="text-bold">Number of Copies: </td>
-                                        <td>
-                                            <?php echo $num_copies; ?>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="text-bold">Genre: </td>
-                                        <td>
-                                            <?php echo $genre; ?>
-                                        </td>
-                                    </tr>
-                                </table>
-
-                                <a href="<?php echo SITEURL; ?>place-order.php?isbn=<?php echo $isbn; ?>" class="btn btn-primary">Order Now</a>
-                            </div>
-                        </div>
-
-                        <?php
+                                                <?php 
+                                            }else{
+                                                // Display the message
+                                                echo "<div class='error'>Image not added.</div>";
+                                            }
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <a href="<?php echo SITEURL; ?>manager/edit-book.php?isbn=<?php echo $isbn; ?>" class="btn btn-primary">Edit Book</a>
+                                        <a href="<?php echo SITEURL; ?>manager/remove-book.php?isbn=<?php echo $isbn; ?>" class="btn btn-primary">Remove Book</a>
+                                    </td>
+                                </tr>
+                                <?php 
+                            }
+                        }else{
+                            // No data
+                        }
                     }
-                }else{
-                    echo "<div class='error'>Book not found.</div>";
-                }
+                ?> 
 
-            ?>
+            </table>
 
             <div class="clearfix"></div>
 

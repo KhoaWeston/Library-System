@@ -17,98 +17,62 @@
     <!-- Book Catalog Section Starts Here -->
     <section class="page-container">
         <div class="container">
-            <?php
-                //SQL Query to get foods based on search keyword
-                $sql = "SELECT * FROM books WHERE 
-                Title LIKE '%$search%' OR 
-                Genre LIKE '%$search%' OR 
-                Author LIKE '%$search%'";
-                
-                // Execute the query
-                $res = mysqli_query($conn, $sql);
+            <table class="tbl-full">
+                <tr>
+                    <th>UID</th>
+                    <th>Username</th>
+                    <th>Address</th>
+                    <th>Phone Number</th>
+                    <th>Member Type</th>
+                    <th>Actions</th>
+                </tr>
 
-                // Count rows
-                $count = mysqli_num_rows($res);
+                <?php 
+                    //SQL Query to get foods based on search keyword
+                    $sql = "SELECT * FROM user WHERE 
+                    Username LIKE '%$search%' OR 
+                    MemberType LIKE '%$search%'";
 
-                // Check whether book available
-                if($count>0){
-                    // Food available
-                    while($row=mysqli_fetch_assoc($res)){
-                        // Get the details
-                        $isbn = $row['BookID'];
-                        $title = $row['Title'];
-                        $author = $row['Author'];
-                        $genre = $row['Genre'];
-                        $num_copies = $row['NumofCopies'];
-                        $image_name = $row['image_name'];
-                        ?>
+                    // Execute the query
+                    $res = mysqli_query($conn, $sql);
 
-                        <div class="book-catalog-box">
-                            <div class="book-catalog-img">
+                    // Check whether the query is executed or not
+                    if($res==TRUE){
+                        // Count Rows to check whether we have data in the database or not
+                        $count = mysqli_num_rows($res); // Function to get all the rows in the database
+
+                        $id_ctr = 1; // Variable 
+
+                        if($count>0){
+                            while($rows=mysqli_fetch_assoc($res)){
+                                $id = $rows['UID'];
+                                $username = $rows['Username'];
+                                $address = $rows['Address'];
+                                $phone_num = $rows['PhoneNum'];
+                                $member_type = $rows['MemberType'];
+
+                                ?>
+                                <tr>
+                                    <td><?php echo $id_ctr++; ?>.</td>
+                                    <td><?php echo $username; ?></td>
+                                    <td><?php echo $address; ?></td>
+                                    <td><?php echo $phone_num; ?></td>
+                                    <td><?php echo $member_type; ?></td>
+                                    <td>
+                                        <a href="<?php echo SITEURL; ?>manager/update-password.php?id=<?php echo $id; ?>" class="btn btn-primary">Update Password</a>
+                                        <a href="<?php echo SITEURL; ?>manager/edit-member.php?id=<?php echo $id; ?>" class="btn btn-primary">Edit Member</a>
+                                        <a href="<?php echo SITEURL; ?>manager/remove-member.php?id=<?php echo $id; ?>" class="btn btn-primary">Remove Member</a>
+                                    </td>
+                                </tr>
                                 <?php 
-                                    // Check whether image name is avaible or not
-                                    if($image_name != ""){
-                                        // Display the image
-                                        ?>
-                                        <img src="<?php echo SITEURL; ?>images/books/<?php echo $image_name; ?>" class="img-responsive img-curve" >
-
-                                        <?php 
-                                    }else{
-                                        // Display the message
-                                        echo "<div class='error'>Image not added.</div>";
-                                    }
-                                ?>    
-                            </div>
-
-                            <div class="book-catalog-desc">
-                                <table class="tbl width-full">
-                                    <tr>
-                                        <td class="text-bold">Title: </td>
-                                        <td>
-                                            <?php echo $title; ?>
-                                        </td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class="text-bold">Author: </td>
-                                        <td>
-                                            <?php echo $author; ?>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="text-bold">ISBN: </td>
-                                        <td>
-                                            <?php echo $isbn; ?>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="text-bold">Number of Copies: </td>
-                                        <td>
-                                            <?php echo $num_copies; ?>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="text-bold">Genre: </td>
-                                        <td>
-                                            <?php echo $genre; ?>
-                                        </td>
-                                    </tr>
-                                </table>
-
-                                <a href="<?php echo SITEURL; ?>place-order.php?isbn=<?php echo $isbn; ?>" class="btn btn-primary">Order Now</a>
-                            </div>
-                        </div>
-
-                        <?php
+                            }
+                        }else{
+                            // No data
+                        }
                     }
-                }else{
-                    echo "<div class='error'>Book not found.</div>";
-                }
+                ?> 
 
-            ?>
+            </table>
 
             <div class="clearfix"></div>
 

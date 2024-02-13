@@ -4,7 +4,7 @@
     <section class="book-search text-center">
         <div class="container">
             
-            <form action="#" method="POST">
+            <form action="<?php echo SITEURL; ?>manager/search-members.php" method="POST">
                 <input type="search" name="search" placeholder="Search for Member...." required>
                 <input type="submit" name="submit" value="Search" class="btn btn-primary">
             </form>
@@ -58,6 +58,7 @@
                     <th>Username</th>
                     <th>Address</th>
                     <th>Phone Number</th>
+                    <th>Member Type</th>
                     <th>Actions</th>
                 </tr>
 
@@ -80,6 +81,7 @@
                                 $username = $rows['Username'];
                                 $address = $rows['Address'];
                                 $phone_num = $rows['PhoneNum'];
+                                $member_type = $rows['MemberType'];
 
                                 ?>
                                 <tr>
@@ -87,6 +89,7 @@
                                     <td><?php echo $username; ?></td>
                                     <td><?php echo $address; ?></td>
                                     <td><?php echo $phone_num; ?></td>
+                                    <td><?php echo $member_type; ?></td>
                                     <td>
                                         <a href="<?php echo SITEURL; ?>manager/update-password.php?id=<?php echo $id; ?>" class="btn btn-primary">Update Password</a>
                                         <a href="<?php echo SITEURL; ?>manager/edit-member.php?id=<?php echo $id; ?>" class="btn btn-primary">Edit Member</a>

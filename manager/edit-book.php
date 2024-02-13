@@ -193,21 +193,21 @@
                         image_name='$image_name'
                     WHERE BookID='$isbn'";
 
-                // Execute query and save data into database
-                $res2 = mysqli_query($conn, $sql2);
+                    // Execute query and save data into database
+                    $res2 = mysqli_query($conn, $sql2);
 
-                // check whether the query is executed 
-                if($res2==TRUE){        
-                        // Create a session variable to display message
-                        $_SESSION['update'] = "<div class='success'>Book updated successfully.</div>";
-                        // Redirect Page
-                        header("location:".SITEURL.'manager/search-books.php');
-                }else{
-                        // Create a session variable to display message
-                        $_SESSION['update'] = "<div class='success'>Book updated successfully.</div>";
-                        // Redirect Page
-                        header("location:".SITEURL.'manager/edit-book.php');
-                }
+                    // check whether the query is executed 
+                    if($res2==TRUE){        
+                            // Create a session variable to display message
+                            $_SESSION['update'] = "<div class='success'>Book updated successfully.</div>";
+                            // Redirect Page
+                            header("location:".SITEURL.'manager/book-list.php');
+                    }else{
+                            // Create a session variable to display message
+                            $_SESSION['update'] = "<div class='success'>Book updated successfully.</div>";
+                            // Redirect Page
+                            header("location:".SITEURL.'manager/edit-book.php');
+                    }
                 }
             ?>
 
