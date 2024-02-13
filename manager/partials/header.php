@@ -18,23 +18,23 @@
 <body>
     <!-- Navbar Section Starts Here -->
     <section class="navbar">
-        <div class="container">
+        <div class="nav-container">
             <div class="logo">
                 <a href="home.php" title="Logo">
                     <img src="../images/Trine_logo.jpg" alt="Library System Logo" class="img-logo">
                 </a>
             </div>
 
-            <div class="header text-right">
+            <div class="tabs-container text-right">
                 <ul>
                     <li>
                         <a href="<?php echo SITEURL; ?>manager/home.php">Home</a>
                     </li>
                     <li>
-                        <a href="<?php echo SITEURL; ?>manager/search-books.php">Search Books</a>
+                        <a href="<?php echo SITEURL; ?>manager/book-list.php">Search Books</a>
                     </li>
                     <li>
-                        <a href="<?php echo SITEURL; ?>manager/search-members.php">Search Members</a>
+                        <a href="<?php echo SITEURL; ?>manager/member-list.php">Search Members</a>
                     </li>
                     <li>
                         <a href="<?php echo SITEURL; ?>manager/profile.php">Profile</a>

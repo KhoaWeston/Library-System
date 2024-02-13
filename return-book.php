@@ -133,22 +133,83 @@
         $isbn = $_GET['isbn'];
             
         // Create SQL query to delete member
-        $sql = "DELETE FROM loaned WHERE BookID=$isbn";
+        $sql1 = "DELETE FROM loaned WHERE BookID=$isbn";
 
         // Execute the query 
-        $res = mysqli_query($conn, $sql);
+        $res1 = mysqli_query($conn, $sql1);
 
         // Check whether the query executed sucessfully or not
-        if($res==TRUE){
-            // Create a session variable to display message
-            $_SESSION['delete'] = "<div class='success'>Book deleted successfully.</div>";
-            // Redirect Page
-            header("location:".SITEURL.'/search-books.php');
+        if($res1==TRUE){
+            // Get id of user
+            $id = $_SESSION['user'];
+            
+            // Create SQL Query to get user details
+            $sql2="SELECT * FROM user WHERE UID=$id";
+
+            // Execute the query
+            $res2=mysqli_query($conn, $sql2);
+
+            // Check whether the query is executed or not
+            if($res2==TRUE){
+                // Get the details
+                $row2=mysqli_fetch_assoc($res2);
+
+                // Add 1 to current books out value
+                $new_books_out = $row2['BooksOut'] - 1;
+
+                // Create SQL Query to update books out value
+                $sql3 = "UPDATE user SET BooksOut='$new_books_out' WHERE UID=$id";
+
+                // Execute the query
+                $res3=mysqli_query($conn, $sql3);
+
+                // Check whether the query is executed or not
+                if($res3==TRUE){
+                    // Create SQL Query to get user details
+                    $sql4="SELECT * FROM books WHERE BookID=$isbn";
+
+                    // Execute the query
+                    $res4=mysqli_query($conn, $sql4);
+
+                    // Check whether the query is executed or not
+                    if($res4==TRUE){
+                        // Get the details
+                        $row4=mysqli_fetch_assoc($res4);
+
+                        // Add 1 to current books out value
+                        $new_num_copies = $row4['NumofCopies'] + 1;
+
+                        // Create SQL Query to update books out value
+                        $sql5 = "UPDATE books SET NumofCopies='$new_num_copies' WHERE BookID=$isbn";
+
+                        // Execute the query
+                        $res5=mysqli_query($conn, $sql5);
+
+                        // Check whether the query is executed or not
+                        if($res5==TRUE){
+                            // Create a session variable to display message
+                            $_SESSION['ordered'] = "<div class='success'>Checkout Successful</div>";
+                            // Redirect Page
+                            header("location:".SITEURL.'book-catalog.php');
+                        }else{
+                            // Failed to update user value
+                        }
+                    }else{
+                        // Redirect to search members
+                        header('location:'.SITEURL.'book-catalog.php');
+                    }
+                }else{
+                    // Failed to update user value
+                }
+            }else{
+                // Redirect to search members
+                header('location:'.SITEURL.'book-catalog.php');
+            }
         }else{
             // Create a session variable to display message
             $_SESSION['delete'] = "<div class='error'>Failed to delete book.</div>";
             // Redirect Page
-            header("location:".SITEURL.'/remove-book.php');
+            header("location:".SITEURL.'/reserved.php');
         }
     }
 ?>

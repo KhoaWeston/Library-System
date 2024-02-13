@@ -92,16 +92,23 @@
                                                 </td>
                                             </tr>
                                         </table>
+                                        <div class="error">
+                                            <?php 
+                                                if(date("Y-m-d H:i:s") > $to_date){
+                                                    echo "Book overdue";
+                                                }
+                                            ?>
+                                        </div>
                                         <a href="<?php echo SITEURL; ?>return-book.php?isbn=<?php echo $isbn; ?>" class="btn btn-primary">Return Now</a>
                                     </div>
 
                                 </div>
 
-                                
                                 <?php 
                             }
                         }else{
                             // No data
+                            echo "No books reserved";
                         }
                     }
                 ?>

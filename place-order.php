@@ -42,7 +42,7 @@
                         $image_name = $row['image_name'];
                     }else{
                         // Redirect to search members
-                        header('location:'.SITEURL.'search-books.php');
+                        header('location:'.SITEURL.'book-catalog.php');
                     }
                 }
             ?>
@@ -125,28 +125,98 @@
 <?php include('partials-front/footer.php'); ?>
 
 <?php 
-    if(isset($_POST['submit']))
-    {   
+    if(isset($_POST['submit'])){  
+        // Get date data from form 
         $from_date = date("Y-m-d H:i:s");
         $to_date = date('Y-m-d H:i:s', strtotime('+1 week'));
         
-        // SQL Query to save the data into the database
-        $sql = "INSERT INTO loaned SET
+        // SQL Query to save the data into the loaned database
+        $sql1 = "INSERT INTO loaned SET
             UID='$id',
             BookID='$isbn',
             LoanDate='$from_date',
             ToBeReturnedDate='$to_date'
         ";
 
-       // Execute query and save data into database
-       $res = mysqli_query($conn, $sql) or die(mysqli_error());
+        // Execute query and save data into database
+        $res1 = mysqli_query($conn, $sql1) or die(mysqli_error());
 
-       // check whether the query is executed 
-       if($res==TRUE){        
-            // Create a session variable to display message
-            $_SESSION['ordered'] = "<div class='success'>Checkout Successful</div>";
-            // Redirect Page
-            header("location:".SITEURL.'book-catalog.php');
+        // check whether the query is executed 
+        if($res1==TRUE){                  
+            // Create SQL Query to get user details
+            $sql2="SELECT * FROM user WHERE UID=$id";
+
+            // Execute the query
+            $res2=mysqli_query($conn, $sql2);
+
+            // Check whether the query is executed or not
+            if($res2==TRUE){
+                // Get the details
+                $row2=mysqli_fetch_assoc($res2);
+
+                // Add 1 to current books out value
+                $books_out = $row2['BooksOut'];
+
+                if($books_out == 6){
+                    // Create SQL Query to update books out value
+                    $sql3 = "UPDATE user SET BooksOut='($books_out+1)' WHERE UID=$id";
+
+                    // Execute the query
+                    $res3=mysqli_query($conn, $sql3);
+
+                    // Check whether the query is executed or not
+                    if($res3==TRUE){
+                        // Create SQL Query to get user details
+                        $sql4="SELECT * FROM books WHERE BookID=$isbn";
+
+                        // Execute the query
+                        $res4=mysqli_query($conn, $sql4);
+
+                        // Check whether the query is executed or not
+                        if($res4==TRUE){
+                            // Get the details
+                            $row4=mysqli_fetch_assoc($res4);
+
+                            $num_copies = $row4['NumofCopies'];
+                            if($num_copies != 0){
+                                // Create SQL Query to update books out value
+                                $sql5 = "UPDATE books SET NumofCopies='($new_num_copies-1)' WHERE BookID=$isbn";
+
+                                // Execute the query
+                                $res5=mysqli_query($conn, $sql5);
+
+                                // Check whether the query is executed or not
+                                if($res5==TRUE){
+                                    // Create a session variable to display message
+                                    $_SESSION['ordered'] = "<div class='success'>Checkout Successful</div>";
+                                    // Redirect Page
+                                    header("location:".SITEURL.'book-catalog.php');
+                                }else{
+                                    // Failed to update user value
+                                }
+                            }else{
+                                // Create a session variable to display message
+                                $_SESSION['ordered'] = "<div class='error'>No more copies</div>";
+                                // Redirect Page
+                                header("location:".SITEURL.'book-catalog.php');
+                            }
+                        }else{
+                            // Redirect to search members
+                            header('location:'.SITEURL.'book-catalog.php');
+                        }
+                    }else{
+                        // Failed to update user value
+                    }
+                }else{
+                    // Create a session variable to display message
+                    $_SESSION['ordered'] = "<div class='error'>Max reserved</div>";
+                    // Redirect Page
+                    header("location:".SITEURL.'book-catalog.php');
+                }
+            }else{
+                // Redirect to search members
+                header('location:'.SITEURL.'book-catalog.php');
+            }
        }else{
             // Create a session variable to display message
             $_SESSION['ordered'] = "<div class='error'>Failed to checkout.</div>";
