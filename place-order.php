@@ -157,9 +157,10 @@
                 // Add 1 to current books out value
                 $books_out = $row2['BooksOut'];
 
-                if($books_out == 6){
+                if($books_out < 6){
+                    $new_books_out = $books_out + 1;
                     // Create SQL Query to update books out value
-                    $sql3 = "UPDATE user SET BooksOut='($books_out+1)' WHERE UID=$id";
+                    $sql3 = "UPDATE user SET BooksOut='$new_books_out' WHERE UID=$id";
 
                     // Execute the query
                     $res3=mysqli_query($conn, $sql3);
@@ -180,7 +181,8 @@
                             $num_copies = $row4['NumofCopies'];
                             if($num_copies != 0){
                                 // Create SQL Query to update books out value
-                                $sql5 = "UPDATE books SET NumofCopies='($new_num_copies-1)' WHERE BookID=$isbn";
+                                $new_num_copies = $num_copies - 1;
+                                $sql5 = "UPDATE books SET NumofCopies='$new_num_copies' WHERE BookID=$isbn";
 
                                 // Execute the query
                                 $res5=mysqli_query($conn, $sql5);
