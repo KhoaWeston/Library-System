@@ -1,16 +1,32 @@
 /* CSS for table */
 
-.tbl-full{
-    margin-top: 20px;
-    width: 100%;
-}
-
-table tr th{
-    border-bottom: 1px solid black;
-    padding: 1%;
+.tbl-list{
+    border-radius: 15px;
+    border-collapse: collapse;
+    box-shadow: 0 5px 10px rgb(200, 200, 200);
+    background-color: white;
     text-align: left;
+    overflow: hidden;
+} 
+
+.tbl-list thead {
+    box-shadow: 0 5px 10px rgb(200, 200, 200);
 }
 
-table tr td{
-    padding: 1%;
+.tbl-list th {
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.7rem;
+    font-weight: 900;
+}
+
+.tbl-list td {
+    padding: 1rem 2rem;
+}
+
+
+/* Color alternating rows */
+.tbl-list tr:nth-child(even) {
+    background-color: rgb(228, 228, 228);
 }

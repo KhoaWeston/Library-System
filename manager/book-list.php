@@ -37,16 +37,18 @@
             <br /><br /><br />
             <a href="add-book.php" class="btn btn-primary">Add Book</a>
             
-            <table class="tbl-full">
-                <tr>
-                    <th>ISBN</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Genre</th>
-                    <th>Copies</th>
-                    <th>Image</th>
-                    <th>Actions</th>
-                </tr>
+            <table class="tbl-list">
+                <thead>    
+                    <tr>
+                        <th>ISBN</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Genre</th>
+                        <th>Copies</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
 
                 <?php 
                     // Query to get all members

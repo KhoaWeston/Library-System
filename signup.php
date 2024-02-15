@@ -71,13 +71,15 @@
         $password = md5($_POST['password']); // password encryption
         $address = $_POST['address'];
         $phone_num = $_POST['phone_num']; 
+        $member_type = 'member';
 
         // SQL Query to save the data into the database
         $sql = "INSERT INTO user SET
             Username='$username',
             Password='$password',
             Address='$address',
-            PhoneNum='$phone_num'
+            PhoneNum='$phone_num',
+            MemberType='$member_type'
         ";
 
        // Execute query and save data into database

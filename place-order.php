@@ -106,6 +106,14 @@
                                 </tr>
 
                                 <tr>
+                                    <td class="text-bold">Reservation Duration: </td>
+                                    <td>
+                                        <input type="radio" name="featured" value="1_week"> 2 Week
+                                        <input type="radio" name="featured" value="2_week"> 4 Week
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <td>
                                         <input type="submit" name="submit" value="Confirm" class="btn btn-primary">
                                     </td>
@@ -129,6 +137,7 @@
         // Get date data from form 
         $from_date = date("Y-m-d H:i:s");
         $to_date = date('Y-m-d H:i:s', strtotime('+1 week'));
+        $reserve_time = $_POST('featured');
         
         // SQL Query to save the data into the loaned database
         $sql1 = "INSERT INTO loaned SET
@@ -179,7 +188,7 @@
                             $row4=mysqli_fetch_assoc($res4);
 
                             $num_copies = $row4['NumofCopies'];
-                            if($num_copies != 0){
+                            if($num_copies > 0){
                                 // Create SQL Query to update books out value
                                 $new_num_copies = $num_copies - 1;
                                 $sql5 = "UPDATE books SET NumofCopies='$new_num_copies' WHERE BookID=$isbn";

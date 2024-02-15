@@ -52,15 +52,17 @@
             <br /><br /><br />
             <a href="add-member.php" class="btn btn-primary">Add Member</a>
             
-            <table class="tbl-full">
-                <tr>
-                    <th>UID</th>
-                    <th>Username</th>
-                    <th>Address</th>
-                    <th>Phone Number</th>
-                    <th>Member Type</th>
-                    <th>Actions</th>
-                </tr>
+            <table class="tbl-list">
+                <thead></thead>
+                    <tr>
+                        <th>UID</th>
+                        <th>Username</th>
+                        <th>Address</th>
+                        <th>Phone Number</th>
+                        <th>Member Type</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
 
                 <?php 
                     // Query to get all members
@@ -73,8 +75,6 @@
                         // Count Rows to check whether we have data in the database or not
                         $count = mysqli_num_rows($res); // Function to get all the rows in the database
 
-                        $id_ctr = 1; // Variable 
-
                         if($count>0){
                             while($rows=mysqli_fetch_assoc($res)){
                                 $id = $rows['UID'];
@@ -85,7 +85,7 @@
 
                                 ?>
                                 <tr>
-                                    <td><?php echo $id_ctr++; ?>.</td>
+                                    <td><?php echo $id; ?></td>
                                     <td><?php echo $username; ?></td>
                                     <td><?php echo $address; ?></td>
                                     <td><?php echo $phone_num; ?></td>
