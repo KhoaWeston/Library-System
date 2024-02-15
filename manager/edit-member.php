@@ -66,6 +66,14 @@
                     </tr>
 
                     <tr>
+                        <td>Member Type: </td>
+                        <td>
+                            <input type="radio" name="mem_type" value="member"> Member
+                            <input type="radio" name="mem_type" value="manager"> Manager
+                        </td>
+                    </tr>
+
+                    <tr>
                         <td colspan="2" class="row-btns text-center">
                             <input type="hidden" name="id" value="<?php echo $id; ?>">
                             <input type="submit" name="submit" value="Update Member" class="btn btn-primary">
@@ -88,13 +96,15 @@
         $id = $_POST['id'];
         $username = $_POST['username'];
         $address = $_POST['address'];
-        $phone_num = $_POST['phone_num']; 
+        $phone_num = $_POST['phone_num'];
+        $mem_type = $_POST['mem_type']; 
 
         // SQL Query to save the data into the database
         $sql = "UPDATE user SET
             Username='$username',
             Address='$address',
-            PhoneNum='$phone_num'
+            PhoneNum='$phone_num',
+            MemberType='$mem_type'
         WHERE UID='$id'";
 
        // Execute query and save data into database
@@ -105,10 +115,10 @@
             // Create a session variable to display message
             $_SESSION['update'] = "<div class='success'>Member updated successfully.</div>";
             // Redirect Page
-            header("location:".SITEURL.'manager/search-members.php');
+            header("location:".SITEURL.'manager/member-list.php');
        }else{
             // Create a session variable to display message
-            $_SESSION['update'] = "<div class='success'>Member updated successfully.</div>";
+            $_SESSION['update'] = "<div class='error'>Failed to update member.</div>";
             // Redirect Page
             header("location:".SITEURL.'manager/edit-member.php');
        }

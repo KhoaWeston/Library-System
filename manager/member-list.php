@@ -85,7 +85,7 @@
 
                                 ?>
                                 <tr>
-                                    <td><?php echo $id; ?></td>
+                                    <td class="col-id"><?php echo $id; ?></td>
                                     <td><?php echo $username; ?></td>
                                     <td><?php echo $address; ?></td>
                                     <td><?php echo $phone_num; ?></td>

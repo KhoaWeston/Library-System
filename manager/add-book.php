@@ -105,7 +105,7 @@
             // And if the image is not uploaded then
             if($upload==false){
                 // Set message
-                $_SESSION['upload'] = "<div class='success'>Failed to upload image.</div>";
+                $_SESSION['upload'] = "<div class='error'>Failed to upload image.</div>";
                 // Redirect Page
                 header("location:".SITEURL.'manager/add-book.php');
                 // Stop the process
@@ -134,7 +134,7 @@
             // Create a session variable to display message
             $_SESSION['add'] = "<div class='success'>Book added successfully.</div>";
             // Redirect Page
-            header("location:".SITEURL.'manager/search-books.php'); // WARNING: Cannot modify header information - headers already sent by (output started at Line 94) 
+            header("location:".SITEURL.'manager/book-list.php'); 
        }else{
             // Create a session variable to display message
             $_SESSION['add'] = "<div class='error'>Failed to add book.</div>";

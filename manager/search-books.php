@@ -17,17 +17,18 @@
     <!-- Book Catalog Section Starts Here -->
     <section class="page-container">
         <div class="container">
-        <table class="tbl-full">
-                <tr>
-                    <th>ISBN</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Genre</th>
-                    <th>Copies</th>
-                    <th>Image</th>
-                    <th>Actions</th>
-                </tr>
-
+        <table class="tbl-list">
+                <thead>
+                    <tr>
+                        <th>ISBN</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Genre</th>
+                        <th>Copies</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
                 <?php 
                     //SQL Query to get foods based on search keyword
                     $sql = "SELECT * FROM books WHERE 

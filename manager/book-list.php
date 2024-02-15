@@ -72,7 +72,7 @@
 
                                 ?>
                                 <tr>
-                                    <td><?php echo $isbn; ?></td>
+                                    <td class="col-id"><?php echo $isbn; ?></td>
                                     <td><?php echo $title; ?></td>
                                     <td><?php echo $author; ?></td>
                                     <td><?php echo $genre; ?></td>

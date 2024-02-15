@@ -94,10 +94,10 @@
                         // Create a session variable to display message
                         $_SESSION['change-pwd'] = "<div class='success'>Password changed successfully.</div>";
                         // Redirect Page
-                        header("location:".SITEURL.'manager/search-members.php');
+                        header("location:".SITEURL.'manager/member-list.php');
                     }else{
                         // Create a session variable to display message
-                        $_SESSION['change-pwd'] = "<div class='success'>Failed to change password.</div>";
+                        $_SESSION['change-pwd'] = "<div class='error'>Failed to change password.</div>";
                         // Redirect Page
                         header("location:".SITEURL.'manager/update-password.php');
                     }
@@ -105,13 +105,13 @@
                     // Redirect to search members page with error message
                     $_SESSION['pwd-not-match'] = "<div class='error'>Password did not match.</div>";
                     // Redirect the User
-                    header("location:".SITEURL.'manager/search-members.php');
+                    header("location:".SITEURL.'manager/update-password.php');
                 }
             }else{
                 // user does not exist set message and redirect
                 $_SESSION['user-not-found'] = "<div class='error'>User not found.</div>";
                 // Redirect the user
-                header("location:".SITEURL.'manager/search-members.php');
+                header("location:".SITEURL.'manager/update-password.php');
             }
         }
 

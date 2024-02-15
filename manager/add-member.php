@@ -43,6 +43,14 @@
                     </tr>
 
                     <tr>
+                        <td>Member Type: </td>
+                        <td>
+                            <input type="radio" name="mem_type" value="member"> Member
+                            <input type="radio" name="mem_type" value="manager"> Manager
+                        </td>
+                    </tr>
+
+                    <tr>
                         <td colspan="2" class="row-btns text-center">
                             <input type="submit" name="submit" value="Add Member" class="btn btn-primary">
                             <a href="member-list.php" class="btn btn-primary">Cancel</a>
@@ -65,13 +73,15 @@
         $password = md5($_POST['password']); // password encryption
         $address = $_POST['address'];
         $phone_num = $_POST['phone_num']; 
+        $mem_type = $_POST['mem_type'];
 
         // SQL Query to save the data into the database
         $sql = "INSERT INTO user SET
             Username='$username',
             Password='$password',
             Address='$address',
-            PhoneNum='$phone_num'
+            PhoneNum='$phone_num',
+            MemberType='$mem_type'
         ";
 
        // Execute query and save data into database
@@ -82,7 +92,7 @@
             // Create a session variable to display message
             $_SESSION['add'] = "<div class='success'>Member added successfully.</div>";
             // Redirect Page
-            header("location:".SITEURL.'manager/search-members.php');
+            header("location:".SITEURL.'manager/member-list.php');
        }else{
             // Create a session variable to display message
             $_SESSION['add'] = "<div class='error'>Failed to add member.</div>";

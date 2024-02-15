@@ -20,7 +20,8 @@
     font-weight: bold;
 }
 .tbl-list td {
-    padding: 15px;
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
 /* Color alternating rows */
 .tbl-list tr:nth-child(even) {
@@ -29,4 +30,7 @@
 
 .row-btns{
     padding-top: 20px;
+}
+.col-id{
+    text-align: center;
 }

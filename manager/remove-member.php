@@ -88,7 +88,7 @@
             // Create a session variable to display message
             $_SESSION['delete'] = "<div class='success'>Member deleted successfully.</div>";
             // Redirect Page
-            header("location:".SITEURL.'manager/search-members.php');
+            header("location:".SITEURL.'manager/member-list.php');
         }else{
             // Create a session variable to display message
             $_SESSION['delete'] = "<div class='error'>Failed to delete member.</div>";
