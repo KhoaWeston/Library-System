@@ -1,8 +1,8 @@
 <?php include('partials/header.php'); ?>
 
     <!-- Main Section Starts Here -->
-    <section class="book-catalog">
-        <div class="container">
+    <section class="page-container text-center">
+        <div class="confirm-container">
             <h2 class="text-center">Edit Book</h2>
             
             <?php 
@@ -45,7 +45,7 @@
             ?>
 
             <form action="" method="POST" enctype="multipart/form-data">
-                <table class="tbl-full">
+                <table class="width-full">
                     <tr>
                         <td>Title: </td>
                         <td>
@@ -100,13 +100,11 @@
                     </tr>
 
                     <tr>
-                        <td colspan="2">
+                        <td colspan="2" class="row-btns text-center">
                             <input type="hidden" name="isbn" value="<?php echo $isbn; ?>">
                             <input type="hidden" name="current_image" value="<?php echo $current_image; ?>">
                             <input type="submit" name="submit" value="Update Book" class="btn btn-primary">
-                        </td>
-                        <td>
-                            <a href="search-books.php" class="btn btn-primary">Cancel</a>
+                            <a href="book-list.php" class="btn btn-primary">Cancel</a>
                         </td>
                     </tr>
                 </table>

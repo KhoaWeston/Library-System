@@ -34,7 +34,7 @@
                     unset($_SESSION['update']); // Remove message
                 }
             ?>
-            <br /><br /><br />
+            <br />
             <a href="add-book.php" class="btn btn-primary">Add Book</a>
             
             <table class="tbl-list">

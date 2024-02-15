@@ -49,11 +49,11 @@
                     unset($_SESSION['change-pwd']); // Remove message
                 }
             ?>
-            <br /><br /><br />
+            <br />
             <a href="add-member.php" class="btn btn-primary">Add Member</a>
             
             <table class="tbl-list">
-                <thead></thead>
+                <thead>
                     <tr>
                         <th>UID</th>
                         <th>Username</th>

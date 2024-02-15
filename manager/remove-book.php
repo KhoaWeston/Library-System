@@ -1,8 +1,8 @@
 <?php include('partials/header.php'); ?>
 
     <!-- Main Section Starts Here -->
-    <section class="book-catalog">
-        <div class="container">
+    <section class="page-container text-center">
+        <div class="confirm-container">
             <h2 class="text-center">Remove Book</h2>
             
             <?php 
@@ -37,7 +37,7 @@
             ?>
 
             <form action="" method="POST">
-                <table class="tbl-full">
+                <table class="width-full">
                     <tr>
                         <td>ISBN: </td>
                         <td>
@@ -67,11 +67,9 @@
                     </tr>
 
                     <tr>
-                        <td colspan="2">
+                        <td colspan="2" class="row-btns text-center">
                             <input type="submit" name="submit" value="Confirm" class="btn btn-primary">
-                        </td>
-                        <td>
-                            <a href="search-books.php" class="btn btn-primary">Cancel</a>
+                            <a href="book-list.php" class="btn btn-primary">Cancel</a>
                         </td>
                     </tr>
                 </table>

@@ -193,3 +193,43 @@ fieldset{
     border: none;
     border-radius: 5px;
 }
+
+/* CSS for confirm page */
+.tbl-confirm{
+    margin-bottom: 0px;
+}
+.img-confirm{
+    margin: auto;
+    width: 70%;
+}
+.confirm-desc{
+    width: 100%;
+    float: left;
+}
+.confirm-col-img{
+    width: 40%;
+}
+.confirm-container input[type="text"]{
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border: 1px solid black;
+}
+.confirm-container input[type="number"]{
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border: 1px solid black;
+}
+.confirm-container input[type="password"]{
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border: 1px solid black;
+}

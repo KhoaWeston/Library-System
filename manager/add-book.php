@@ -1,8 +1,8 @@
 <?php include('partials/header.php'); ?>
 
     <!-- Main Section Starts Here -->
-    <section class="page-container">
-        <div class="container">
+    <section class="page-container text-center">
+        <div class="confirm-container">
             <h2 class="text-center">Add Book</h2>
             
             <?php 
@@ -13,7 +13,7 @@
             ?>
 
             <form action="" method="POST" enctype="multipart/form-data">
-                <table class="tbl-full">
+                <table class="width-full">
                     <tr>
                         <td>ISBN: </td>
                         <td>
@@ -57,11 +57,9 @@
                     </tr>
 
                     <tr>
-                        <td colspan="2">
+                        <td colspan="2" class="row-btns text-center">
                             <input type="submit" name="submit" value="Add Book" class="btn btn-primary">
-                        </td>
-                        <td>
-                            <a href="search-books.php" class="btn btn-primary">Cancel</a>
+                            <a href="book-list.php" class="btn btn-primary">Cancel</a>
                         </td>
                     </tr>
                 </table>
