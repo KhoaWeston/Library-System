@@ -127,7 +127,9 @@
             // Create a session variable to display message
             $_SESSION['update-account'] = "<div class='success'>Changes Saved Successfully.</div>";
             // Redirect Page
-            header("location:".SITEURL.'profile.php');
+            echo "<script type=\"text/javascript\"> alert(\"Profile changes has been saved!\"); </script>";
+            header("refresh: 0.5; url=\profile.php");
+            // header("location:".SITEURL.'profile.php');
        }else{
             // Create a session variable to display message
             $_SESSION['update-account'] = "<div class='success'>Failed to Save Changes.</div>";

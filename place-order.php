@@ -6,9 +6,11 @@
             <h2 class="text-center">Place Order?</h2>
             
             <?php 
-                if(isset($_SESSION['update'])){
-                    echo $_SESSION['update']; // Display message
-                    unset($_SESSION['update']); // Remove message
+                ob_start(); 
+
+                if(isset($_SESSION['missing'])){
+                    echo $_SESSION['missing']; // Display message
+                    unset($_SESSION['missing']); // Remove message
                 }
             ?>
 
@@ -108,8 +110,9 @@
                                 <tr>
                                     <td class="text-bold">Reservation Duration: </td>
                                     <td>
-                                        <input type="radio" name="featured" value="1_week"> 2 Week
-                                        <input type="radio" name="featured" value="2_week"> 4 Week
+                                        <input type="hidden" name="res_time" value="error">
+                                        <input type="radio" name="res_time" value="2_week"> 2 Week
+                                        <input type="radio" name="res_time" value="4_week"> 4 Week
                                     </td>
                                 </tr>
 
@@ -129,16 +132,27 @@
         </div>
     </section>
     <!-- Main Section Ends Here -->
-
 <?php include('partials-front/footer.php'); ?>
 
 <?php 
     if(isset($_POST['submit'])){  
-        // Get date data from form 
+        header_remove();
+        // Set reservation and due dates 
         $from_date = date("Y-m-d H:i:s");
-        $to_date = date('Y-m-d H:i:s', strtotime('+1 week'));
-        $reserve_time = $_POST('featured');
-        
+        $res_timee = $_POST['res_time'];
+        if($res_timee == "2_week"){
+            $to_date = date('Y-m-d H:i:s', strtotime('+2 week'));
+        }else if($res_timee == "4_week"){
+            $to_date = date('Y-m-d H:i:s', strtotime('+4 week'));
+        }else if($res_timee == "error"){
+            // Create a session variable to display message
+            $_SESSION['missing'] = "<div class='error'>Select Reservation Duration</div>";
+            // Redirect Page
+            header("location:".SITEURL.'place-order.php?isbn='.$isbn);
+            ob_end_flush();
+            exit();
+        }
+                
         // SQL Query to save the data into the loaned database
         $sql1 = "INSERT INTO loaned SET
             UID='$id',

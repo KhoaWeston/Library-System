@@ -43,14 +43,11 @@
                 }
             ?>
 
-            <form action="" method="POST" class="text-left">
-                <div class="text-bold">ID Number: <?php echo $id; ?></div><br/>
-                <div class="text-bold">Username: <?php echo $username; ?></div><br/>
-                <div class="text-bold">Address: <?php echo $address; ?></div><br/>
-                <div class="text-bold">Phone Number: <?php echo $phone_num; ?></div><br/>
-                <div class="text-bold">Books Reserved: <?php echo $books_out; ?></div><br/>
-                
-            </form>
+            <div class="text-bold">ID Number: <?php echo $id; ?></div><br/>
+            <div class="text-bold">Username: <?php echo $username; ?></div><br/>
+            <div class="text-bold">Address: <?php echo $address; ?></div><br/>
+            <div class="text-bold">Phone Number: <?php echo $phone_num; ?></div><br/>
+            <div class="text-bold">Books Reserved: <?php echo $books_out; ?></div><br/>
         </div>
         <br/><br/>
 

@@ -98,7 +98,13 @@
                                     </tr>
                                 </table>
 
-                                <a href="<?php echo SITEURL; ?>place-order.php?isbn=<?php echo $isbn; ?>" class="btn btn-primary">Order Now</a>
+                                <?php 
+                                    if($num_copies > 0){
+                                        echo "<a href='<?php echo SITEURL; ?>place-order.php?isbn=<?php echo $isbn; ?>' class='btn btn-primary'>Order Now</a>";
+                                    }else{
+                                        echo "<div class='error'>No copies to checkout.</div>";
+                                    }
+                                ?>
                             </div>
                         </div>
 

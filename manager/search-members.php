@@ -8,7 +8,7 @@
                 $search = $_POST['search'];
             ?>  
             
-            <h2 class="">Books on your search <a href="#" class="">"<?php echo $search;?>"</a></h2>
+            <h2 class="">Members on your search <a href="#" class="">"<?php echo $search;?>"</a></h2>
 
         </div>
     </section>

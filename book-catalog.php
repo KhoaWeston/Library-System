@@ -17,15 +17,21 @@
         <h2 class="text-center">Book Catalog</h2>
 
         <?php 
-            // Query to get all members
+            // Query to get all books
             $sql = "SELECT * FROM books";
             // Execute the query
             $res = mysqli_query($conn, $sql);
+            
+            // Query to get all loaned books
+            $sql2 = "SELECT * FROM loaned";
+            // Execute the query
+            $res2 = mysqli_query($conn, $sql2);
 
             // Check whether the query is executed or not
-            if($res==TRUE){
+            if($res==TRUE && $res2 == TRUE){
                 // Count Rows to check whether we have data in the database or not
                 $count = mysqli_num_rows($res); // Function to get all the rows in the database
+                $count2 = mysqli_num_rows($res2);
 
                 if($count>0){
                     while($rows=mysqli_fetch_assoc($res)){
@@ -93,7 +99,30 @@
                                     </tr>
                                 </table>
 
-                                <a href="<?php echo SITEURL; ?>place-order.php?isbn=<?php echo $isbn; ?>" class="btn btn-primary">Order Now</a>
+                                <?php 
+                                    if($num_copies > 0){ 
+                                        if($count2 > 0){
+                                            $flag = FALSE;
+                                            foreach($res2 as $rows2){
+                                                if($isbn == $rows2['BookID']){
+                                                    echo "<div class='error'>Already checked out.</div>";
+                                                    $flag = TRUE;
+                                                }
+                                            }
+                                            if($flag == FALSE){
+                                                ?> 
+                                                <a href="<?php echo SITEURL; ?>place-order.php?isbn=<?php echo $isbn; ?>" class="btn btn-primary">Order Now</a>
+                                                <?php
+                                            }
+                                        }else{
+                                            ?> 
+                                            <a href="<?php echo SITEURL; ?>place-order.php?isbn=<?php echo $isbn; ?>" class="btn btn-primary">Order Now</a>
+                                            <?php
+                                        }
+                                    }else{
+                                        echo "<div class='error'>No copies to checkout.</div>";
+                                    }
+                                ?>
                             </div>
                         </div>
                         

@@ -127,6 +127,17 @@ fieldset{
     border-radius: 25px;
     box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.05); /* x_translate, y_translate, fade, size */
 }
+.dash-container{
+    background-color: white;
+    text-align: center;
+    width: 200px;
+    float: left;
+    margin-bottom: 50px;
+    margin-right: 40px;
+    padding: 30px; 
+    border-radius: 25px;
+    box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.05); /* x_translate, y_translate, fade, size */
+}
 
 /* CSS for navbar section */
 .logo{

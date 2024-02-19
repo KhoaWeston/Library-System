@@ -16,6 +16,14 @@
 </head>
 
 <body>
+    <!-- Manager Section Starts Here -->
+    <section class="header-man">
+        <div class="container text-center">
+            <p>Manager Window</p>
+        </div>
+    </section>
+    <!-- Manager Section Ends Here -->
+
     <!-- Navbar Section Starts Here -->
     <section class="navbar">
         <div class="nav-container">

@@ -34,3 +34,8 @@
 .col-id{
     text-align: center;
 }
+
+.header-man{
+    background-color: rgb(66, 85, 255);
+    color: white;
+}
