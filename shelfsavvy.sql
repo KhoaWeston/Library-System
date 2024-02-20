@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2024 at 07:15 PM
+-- Generation Time: Feb 20, 2024 at 06:50 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -33,18 +33,22 @@ CREATE TABLE `books` (
   `Author` varchar(50) NOT NULL,
   `Genre` varchar(50) NOT NULL,
   `NumofCopies` int(2) NOT NULL,
-  `image_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+  `image_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `reg_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`BookID`, `Title`, `Author`, `Genre`, `NumofCopies`, `image_name`) VALUES
-(777, 'The Bible', 'Jesus', 'Nonfiction', 42, 'Book_cover_710.jpg'),
-(590353403, 'Harry Potter', 'J K Rowling', 'Fantasy Fiction', 3, 'Book_cover_424.jpg'),
-(679824111, 'Magic Treehouse', 'Mary Pope Osborne', 'Childrens Fiction', 11, 'Book_cover_841.jpg'),
-(9780786838653, 'The Lightning Thief', 'Rick Riordan', 'Fantasy Fiction', 7, 'Book_cover_688.jpg');
+INSERT INTO `books` (`BookID`, `Title`, `Author`, `Genre`, `NumofCopies`, `image_name`, `reg_date`) VALUES
+(777, 'The Bible', 'Jesus', 'Nonfiction', 40, 'Book_cover_633.jpg', '2024-02-20 02:08:15'),
+(385737955, 'The Maze Runner', 'James Dashner', 'Fiction', 9, 'Book_cover_242.jpg', '2024-02-20 16:10:34'),
+(590353403, 'Harry Potter', 'J K Rowling', 'Fantasy Fiction', 0, 'Book_cover_424.jpg', '2024-02-20 02:08:15'),
+(679824111, 'Magic Treehouse', 'Mary Pope Osborne', 'Childrens Fiction', 11, 'Book_cover_841.jpg', '2024-02-20 02:08:15'),
+(9780439023481, 'The Hunger Games', 'Suzanne Collins', 'Fiction', 7, 'Book_cover_111.jpg', '2024-02-20 02:13:00'),
+(9780786838653, 'The Lightning Thief', 'Rick Riordan', 'Fantasy Fiction', 7, 'Book_cover_688.jpg', '2024-02-20 02:08:15'),
+(9781911481140, 'Moby Dick', 'C S Woolley', 'Fiction', 6, 'Book_cover_666.jpg', '2024-02-20 02:08:15');
 
 -- --------------------------------------------------------
 
@@ -59,13 +63,6 @@ CREATE TABLE `loaned` (
   `ToBeReturnedDate` date NOT NULL,
   `Status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `loaned`
---
-
-INSERT INTO `loaned` (`UID`, `BookID`, `LoanDate`, `ToBeReturnedDate`, `Status`) VALUES
-(9, 679824111, '2024-02-13', '2024-02-20', '');
 
 -- --------------------------------------------------------
 
@@ -92,9 +89,10 @@ INSERT INTO `user` (`Username`, `Password`, `MemberType`, `BooksOut`, `UID`, `Ad
 ('DavidStemen', '6cb75f652a9b52798eb6cf2201057c73', 'manager', 0, 5, 'Another address', 1231231234),
 ('Cheka', '919e682cac825d430a580e842ff0bbc4', 'member', 0, 6, 'Her address', 7897897890),
 ('Khadka', '5f4dcc3b5aa765d61d8327deb882cf99', 'manager', 0, 8, 'His Address', 4564564567),
-('KhoaWeston', '7c6a180b36896a0a8c02787eeafb0e4c', 'manager', 1, 9, '2784 N 300 E Anderson, IN 46012', 7658082262),
+('KhoaWeston', '7c6a180b36896a0a8c02787eeafb0e4c', 'manager', 0, 9, '2784 N 300 E Anderson, IN 46012', 7658082262),
 ('Stephen Carr', '5f4dcc3b5aa765d61d8327deb882cf99', 'member', 0, 10, 'Fort Wayne', 1231234564),
-('DelilahTaylorr', '5f4dcc3b5aa765d61d8327deb882cf99', 'member', 0, 11, 'An address', 1231231234);
+('DelilahTaylorr', '5f4dcc3b5aa765d61d8327deb882cf99', 'member', 0, 11, 'An address', 1231231234),
+('Michael', '5f4dcc3b5aa765d61d8327deb882cf99', 'member', 0, 13, 'addresssss', 1231231234);
 
 --
 -- Indexes for dumped tables
@@ -127,7 +125,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `UID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `UID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
