@@ -6,6 +6,7 @@
             <h2 class="text-center">Edit Book</h2>
             
             <?php 
+                ob_start(); 
                 if(isset($_SESSION['update'])){
                     echo $_SESSION['update']; // Display message
                     unset($_SESSION['update']); // Remove message
@@ -200,6 +201,7 @@
                             $_SESSION['update'] = "<div class='success'>Book updated successfully.</div>";
                             // Redirect Page
                             header("location:".SITEURL.'manager/book-list.php');
+                            ob_end_flush();
                     }else{
                             // Create a session variable to display message
                             $_SESSION['update'] = "<div class='success'>Book updated successfully.</div>";

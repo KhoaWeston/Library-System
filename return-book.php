@@ -6,6 +6,7 @@
             <h2 class="text-center">Return Book</h2>
             
             <?php 
+                ob_start();
                 // Get the isbn of the selected book
                 $isbn=$_GET['isbn'];
 
@@ -96,14 +97,14 @@
                                 <tr>
                                     <td class="text-bold">Date Checked Out: </td>
                                     <td>
-                                        <?php echo $from_date; ?>
+                                        <?php echo date("m-d-Y", strtotime($from_date)); ?>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td class="text-bold">Return Date: </td>
                                     <td>
-                                        <?php echo $to_date; ?>
+                                        <?php echo date("m-d-Y", strtotime($to_date)); ?>
                                     </td>
                                 </tr>
 
@@ -191,6 +192,7 @@
                             $_SESSION['ordered'] = "<div class='success'>Checkout Successful</div>";
                             // Redirect Page
                             header("location:".SITEURL.'book-catalog.php');
+                            ob_end_flush();
                         }else{
                             // Failed to update user value
                         }

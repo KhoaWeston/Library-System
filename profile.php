@@ -44,19 +44,20 @@
             ?>
 
             <form action="" method="POST" class="text-left">
-                <div class="text-bold">ID Number: <?php echo $id; ?></div>
-                <br/>
+                <div class="text-bold">ID Number: </div>
+                <input type="text" name="id" value="<?php echo $id; ?>" disabled>
 
-                <div class="text-bold">Username</div>
+                <div class="text-bold">Username: </div>
                 <input type="text" name="username" value="<?php echo $username; ?>">
 
-                <div class="text-bold">Address</div>
+                <div class="text-bold">Address: </div>
                 <input type="text" name="address" value="<?php echo $address; ?>">
 
-                <div class="text-bold">Phone Number</div>
+                <div class="text-bold">Phone Number: </div>
                 <input type="number" name="phone_num" value="<?php echo $phone_num; ?>">
 
-                <div class="text-bold">Books Reserved: <?php echo $books_out; ?></div>
+                <div class="text-bold">Books Reserved: </div>
+                <input type="text" name="books_out" value="<?php echo $books_out; ?>" disabled>
                 <br/>
                 <div class="text-right">
                     <input type="hidden" name="id" value="<?php echo $id; ?>">

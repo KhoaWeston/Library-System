@@ -8,7 +8,7 @@
                 $search = $_POST['search'];
             ?>  
             
-            <h2 class="">Members on your search <a href="#" class="">"<?php echo $search;?>"</a></h2>
+            <h2 class="">Members on your search <a href="<?php echo SITEURL; ?>manager/member-list.php" class="">"<?php echo $search;?>"</a></h2>
 
         </div>
     </section>
@@ -42,8 +42,6 @@
                         // Count Rows to check whether we have data in the database or not
                         $count = mysqli_num_rows($res); // Function to get all the rows in the database
 
-                        $id_ctr = 1; // Variable 
-
                         if($count>0){
                             while($rows=mysqli_fetch_assoc($res)){
                                 $id = $rows['UID'];
@@ -54,7 +52,7 @@
 
                                 ?>
                                 <tr>
-                                    <td><?php echo $id_ctr++; ?>.</td>
+                                    <td class="col-id"><?php echo $id; ?></td>
                                     <td><?php echo $username; ?></td>
                                     <td><?php echo $address; ?></td>
                                     <td><?php echo $phone_num; ?></td>

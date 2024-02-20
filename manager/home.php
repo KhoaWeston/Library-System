@@ -57,7 +57,7 @@
                     $count6 = $rows4['count6'];
                 }
 
-                // Query to get number of genres
+                // Query to get number of authors
                 $sql5 = "SELECT COUNT(DISTINCT Author) AS count7 FROM books";
                 // Execute the query
                 $res5 = mysqli_query($conn, $sql5);
@@ -95,7 +95,6 @@
                 <h2><?php echo $count7; ?></h2>
                 <p>Number of authors</p>
             </div>
-            
         </div>
     </section>
     <!-- Main Section Ends Here -->

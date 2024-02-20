@@ -129,9 +129,11 @@ fieldset{
 .comp-container{
     background-color: white;
     float: left;
-    width: auto;
+    width: 500px;
+    height: 250px;
     margin: auto;
-    padding: 50px; 
+    margin-right: 40px;
+    padding: 30px; 
     border-radius: 25px;
     box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.05); /* x_translate, y_translate, fade, size */
 }

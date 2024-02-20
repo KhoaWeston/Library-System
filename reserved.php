@@ -81,14 +81,14 @@
                                             <tr>
                                                 <td class="text-bold">Date Checked Out: </td>
                                                 <td>
-                                                    <?php echo $from_date; ?>
+                                                    <?php echo date("m-d-Y", strtotime($from_date)); ?>
                                                 </td>
                                             </tr>
 
                                             <tr>
                                                 <td class="text-bold">Return Date: </td>
                                                 <td>
-                                                    <?php echo $to_date; ?>
+                                                    <?php echo date("m-d-Y", strtotime($to_date)); ?>
                                                 </td>
                                             </tr>
                                         </table>

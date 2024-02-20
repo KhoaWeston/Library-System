@@ -52,7 +52,7 @@
 
                 <?php 
                     // Query to get all members
-                    $sql = "SELECT * FROM books";
+                    $sql = "SELECT * FROM books ORDER BY reg_date DESC";
                     // Execute the query
                     $res = mysqli_query($conn, $sql);
 

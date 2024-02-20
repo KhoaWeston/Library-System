@@ -2,8 +2,8 @@
 
     <!-- Main Section Starts Here -->
     <section class="page-container text-center">
-        <div class="confirm-container">
-            <h2 class="text-center">Admin Profile</h2>
+        <div class="confirm-container text-left">
+            <h2 class="text-center">Manager Profile</h2>
             
             <?php 
                 if(isset($_SESSION['update-account'])){
@@ -43,11 +43,20 @@
                 }
             ?>
 
-            <div class="text-bold">ID Number: <?php echo $id; ?></div><br/>
-            <div class="text-bold">Username: <?php echo $username; ?></div><br/>
-            <div class="text-bold">Address: <?php echo $address; ?></div><br/>
-            <div class="text-bold">Phone Number: <?php echo $phone_num; ?></div><br/>
-            <div class="text-bold">Books Reserved: <?php echo $books_out; ?></div><br/>
+            <div class="text-bold">ID Number: </div>
+            <input type="text" name="id" value="<?php echo $id; ?>" disabled>
+
+            <div class="text-bold">Username: </div>
+            <input type="text" name="username" value="<?php echo $username; ?>" disabled>
+
+            <div class="text-bold">Address: </div>
+            <input type="text" name="address" value="<?php echo $address; ?>" disabled>
+
+            <div class="text-bold">Phone Number: </div>
+            <input type="number" name="phone_num" value="<?php echo $phone_num; ?>" disabled>
+
+            <div class="text-bold">Books Reserved: </div>
+            <input type="text" name="books_out" value="<?php echo $books_out; ?>" disabled>
         </div>
         <br/><br/>
 

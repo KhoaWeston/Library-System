@@ -35,6 +35,15 @@
                         }
                     }
                 }
+
+                // Query to get number of genres
+                $sql3 = "SELECT COUNT(DISTINCT Genre) AS count4 FROM books";
+                // Execute the query
+                $res3 = mysqli_query($conn, $sql3);
+                if($res3==TRUE){
+                    $rows3=mysqli_fetch_assoc($res3);
+                    $count4 = $rows3['count4'];
+                }
             ?>
             
             <div class="dash-container"> 
@@ -50,7 +59,7 @@
                 <p>Number of books overdue</p>
             </div>
             <div class="dash-container"> 
-                <h2>0</h2>
+                <h2><?php echo $count4; ?></h2>
                 <p>Genres</p>
             </div>
 
@@ -71,6 +80,31 @@
                         if($ctr >= 3){
                             break;
                         }
+                    }
+                ?>
+            </div>
+
+            <div class="comp-container"> 
+                <h2>Upcoming Deadlines</h2>
+                <?php 
+                    $flag = FALSE;
+                    foreach($res2 as $rows4){
+                        if($rows4['ToBeReturnedDate'] < date('Y-m-d H:i:s', strtotime('+15 day'))){
+                            $isbn = $rows4['BookID'];
+                            // Query to get all books
+                            $sql4 = "SELECT Title AS title FROM books WHERE BookID='$isbn'";
+                            // Execute the query
+                            $res4 = mysqli_query($conn, $sql4);
+                            if($res4==TRUE){
+                                $rows5=mysqli_fetch_assoc($res4);
+                                echo $rows5['title'], " to be returned by ", date("m-d-Y", strtotime($rows4['ToBeReturnedDate']));
+                            }
+                            $flag=TRUE;
+                            ?> <br/><br/> <?php
+                        }
+                    }
+                    if($flag==FALSE){
+                        echo "No upcoming deadlines";
                     }
                 ?>
             </div>

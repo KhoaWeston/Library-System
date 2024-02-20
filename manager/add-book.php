@@ -6,6 +6,7 @@
             <h2 class="text-center">Add Book</h2>
             
             <?php 
+                ob_start();
                 if(isset($_SESSION['add'])){
                     echo $_SESSION['add']; // Display message
                     unset($_SESSION['add']); // Remove message
@@ -135,6 +136,7 @@
             $_SESSION['add'] = "<div class='success'>Book added successfully.</div>";
             // Redirect Page
             header("location:".SITEURL.'manager/book-list.php'); 
+            ob_end_flush();
        }else{
             // Create a session variable to display message
             $_SESSION['add'] = "<div class='error'>Failed to add book.</div>";

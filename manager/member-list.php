@@ -66,7 +66,7 @@
 
                 <?php 
                     // Query to get all members
-                    $sql = "SELECT * FROM user";
+                    $sql = "SELECT * FROM user ORDER BY UID DESC";
                     // Execute the query
                     $res = mysqli_query($conn, $sql);
 

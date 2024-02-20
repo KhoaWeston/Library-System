@@ -6,9 +6,14 @@
             <h2 class="text-center">Update Member</h2>
             
             <?php 
+                ob_start();
                 if(isset($_SESSION['update'])){
                     echo $_SESSION['update']; // Display message
                     unset($_SESSION['update']); // Remove message
+                }
+                if(isset($_SESSION['missing'])){
+                    echo $_SESSION['missing']; // Display message
+                    unset($_SESSION['missing']); // Remove message
                 }
             ?>
 
@@ -68,6 +73,7 @@
                     <tr>
                         <td>Member Type: </td>
                         <td>
+                            <input type="hidden" name="mem_type" value="error">
                             <input type="radio" name="mem_type" value="member"> Member
                             <input type="radio" name="mem_type" value="manager"> Manager
                         </td>
@@ -98,6 +104,16 @@
         $address = $_POST['address'];
         $phone_num = $_POST['phone_num'];
         $mem_type = $_POST['mem_type']; 
+
+        if($mem_type == "error"){
+            // Create a session variable to display message
+            $_SESSION['missing'] = "<div class='error'>Select Member Type</div>";
+            // Redirect Page
+            header("location:".SITEURL.'manager/edit-member.php?id='.$id);
+            ob_end_flush();
+            exit();
+        }
+        
 
         // SQL Query to save the data into the database
         $sql = "UPDATE user SET

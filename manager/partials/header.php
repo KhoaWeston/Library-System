@@ -39,10 +39,10 @@
                         <a href="<?php echo SITEURL; ?>manager/home.php">Home</a>
                     </li>
                     <li>
-                        <a href="<?php echo SITEURL; ?>manager/book-list.php">Search Books</a>
+                        <a href="<?php echo SITEURL; ?>manager/book-list.php">Books</a>
                     </li>
                     <li>
-                        <a href="<?php echo SITEURL; ?>manager/member-list.php">Search Members</a>
+                        <a href="<?php echo SITEURL; ?>manager/member-list.php">Members</a>
                     </li>
                     <li>
                         <a href="<?php echo SITEURL; ?>manager/profile.php">Profile</a>
