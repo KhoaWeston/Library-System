@@ -19,13 +19,13 @@
         <!-- Navbar Section Starts Here -->
         <section class="navbar">
             <div class="nav-container">
-                <div class="logo">
+                <div class="text-center">
                     <a href="home.php" title="Logo">
-                        <img src="images/ShelfSavvy-Logo.png" alt="Library System Logo" class="img-logo">
+                        <img src="images/ShelfSavvy-Logo-Slogan.png" alt="Library System Logo" class="img-logo-home">
                     </a>
                 </div>
 
-                <div class="tabs-container text-right">
+                <div class="tabs-container text-center">
                     <ul>
                         <li>
                             <a href="<?php echo SITEURL; ?>home.php">Home</a>
