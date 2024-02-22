@@ -207,7 +207,7 @@
                     // Create a session variable to display message
                     $_SESSION['update'] = "<div class='success'>Failed to update book</div>";
                     // Redirect Page
-                    header("location:".SITEURL.'manager/book-list.php');
+                    header("location:".SITEURL.'manager/edit-book.php?isbn='.$isbn);
                 }
             }
         ?>

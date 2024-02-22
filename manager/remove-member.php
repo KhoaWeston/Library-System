@@ -72,7 +72,14 @@
     {
         // Get the ID of member to be deleted
         $id = $_GET['id'];
-            
+        
+        if($id == $_SESION['user']){
+            // Create a session variable to display message
+            $_SESSION['delete'] = "<div class='error'>Cannot delete your own account.</div>";
+            // Redirect Page
+            header("location:".SITEURL.'manager/member-list.php');
+        }
+
         // Create SQL query to delete member
         $sql_delete = "DELETE FROM user WHERE UID=$id";
 
@@ -89,7 +96,7 @@
             // Create a session variable to display message
             $_SESSION['delete'] = "<div class='error'>Failed to delete member.</div>";
             // Redirect Page
-            header("location:".SITEURL.'manager/member-list.php');
+            header("location:".SITEURL.'manager/remove-member.php?id='.$id);
         }
     }
 ?>

@@ -94,7 +94,7 @@
             // Create a session variable to display message
             $_SESSION['delete'] = "<div class='error'>Failed to delete book.</div>";
             // Redirect Page
-            header("location:".SITEURL.'manager/book-list.php');
+            header("location:".SITEURL.'manager/remove-book.php?isbn='.$isbn);
         }
     }
 ?>

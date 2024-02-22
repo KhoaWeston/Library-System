@@ -143,7 +143,7 @@
             // Create a session variable to display message
             $_SESSION['add'] = "<div class='error'>Failed to add book.</div>";
             // Redirect Page
-            header("location:".SITEURL.'manager/add-book.php');
+            header("location:".SITEURL.'manager/add-book.php?isbn='.$isbn);
         }
     }
 ?>

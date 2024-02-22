@@ -136,7 +136,7 @@
             // Create a session variable to display message
             $_SESSION['update'] = "<div class='error'>Failed to update member.</div>";
             // Redirect Page
-            header("location:".SITEURL.'manager/member-list.php');
+            header("location:".SITEURL.'manager/edit-member.php?id='.$id);
         }
     }
 ?>

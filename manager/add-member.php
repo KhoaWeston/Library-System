@@ -92,8 +92,24 @@
             exit();
         }
 
+        // Query to get all users
+        $sql_users = "SELECT * FROM user";
+        // Execute the query
+        $res_users = mysqli_query($conn, $sql_users);
+        if($res_users==TRUE){
+            while($rows_users=mysqli_fetch_assoc($res_users)){
+                if($username == $rows_users['Username']){
+                    // Create a session variable to display message
+                    $_SESSION['add'] = "<div class='error'>Username is taken. </div>";
+                    // Redirect Page
+                    header("location:".SITEURL.'add-member.php?id='.$id);
+                    exit();
+                }
+            }
+        }
+
         // SQL Query to save the data into the database
-        $sql = "INSERT INTO user SET
+        $sql_add = "INSERT INTO user SET
             Username='$username',
             Password='$password',
             Address='$address',
@@ -102,10 +118,10 @@
         ";
 
         // Execute query and save data into database
-        $res = mysqli_query($conn, $sql) or die(mysqli_error());
+        $res_add = mysqli_query($conn, $sql_add) or die(mysqli_error());
 
         // check whether the query is executed 
-        if($res==TRUE){        
+        if($res_add==TRUE){        
             // Create a session variable to display message
             $_SESSION['add'] = "<div class='success'>Member added successfully.</div>";
             // Redirect Page
@@ -116,7 +132,7 @@
             // Create a session variable to display message
             $_SESSION['add'] = "<div class='error'>Failed to add member.</div>";
             // Redirect Page
-            header("location:".SITEURL.'manager/member-list.php');
+            header("location:".SITEURL.'manager/add-member.php?id='.$id);
         }
     }
 ?>

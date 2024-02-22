@@ -102,15 +102,15 @@
                         // Create a session variable to display message
                         $_SESSION['update-pass'] = "<div class='error'>Failed to change password.</div>";
                         // Redirect Page
-                        header("location:".SITEURL.'manager/member-list.php');
+                        header("location:".SITEURL.'manager/update-password.php?id='.$id);
                     }
                 }else{
                     $_SESSION['update-pass'] = "<div class='error'>Password did not match.</div>";
-                    header("location:".SITEURL.'manager/member-list.php');
+                    header("location:".SITEURL.'manager/update-password.php?id='.$id);
                 }
             }else{
-                $_SESSION['update-pass'] = "<div class='error'>User not found.</div>";
-                header("location:".SITEURL.'manager/member-list.php');
+                $_SESSION['update-pass'] = "<div class='error'>Incorrect Password.</div>";
+                header("location:".SITEURL.'manager/update-password.php?id='.$id);
             }
         }
     }

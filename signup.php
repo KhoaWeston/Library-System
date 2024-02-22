@@ -15,13 +15,13 @@
 
     <body>
         <div class="center">
-            <h1><img src="images/ShelfSavvy-Logo.png" alt="Library System Logo" class="img-logo-login"><br/>Member Sign Up</h1>
+            <h1><img src="images/ShelfSavvy-Logo.png" alt="Library System Logo" class="img-logo-login"><br/>Member Sign Up</h1><br/>
 
             <?php 
                 // Displays error message
-                if(isset($_SESSION['login'])){
-                    echo $_SESSION['login']; 
-                    unset($_SESSION['login']); 
+                if(isset($_SESSION['signup'])){
+                    echo $_SESSION['signup']; 
+                    unset($_SESSION['signup']); 
                 }
             ?>
 
@@ -66,8 +66,24 @@
         $phone_num = $_POST['phone_num']; 
         $member_type = 'member';
 
+        // Query to get all users
+        $sql_users = "SELECT * FROM user";
+        // Execute the query
+        $res_users = mysqli_query($conn, $sql_users);
+        if($res_users==TRUE){
+            while($rows_users=mysqli_fetch_assoc($res_users)){
+                if($username == $rows_users['Username']){
+                    // Create a session variable to display message
+                    $_SESSION['signup'] = "<div class='error'>Username is taken. </div>";
+                    // Redirect Page
+                    header("location:".SITEURL.'signup.php');
+                    exit();
+                }
+            }
+        }
+        
         // SQL Query to save the data into the database
-        $sql = "INSERT INTO user SET
+        $sql_signup = "INSERT INTO user SET
             Username='$username',
             Password='$password',
             Address='$address',
@@ -75,11 +91,11 @@
             MemberType='$member_type'
         ";
 
-       // Execute query and save data into database
-       $res = mysqli_query($conn, $sql) or die(mysqli_error());
+        // Execute query and save data into database
+        $res_signup = mysqli_query($conn, $sql_signup) or die(mysqli_error());
 
-       // check whether the query is executed 
-       if($res==TRUE){        
+        // check whether the query is executed 
+        if($res_signup==TRUE){        
             // Create a session variable to display message
             $_SESSION['signup'] = "<div class='success'>Member sign up successful.</div>";
             
@@ -92,11 +108,11 @@
 
             // Redirect Page
             header("location:".SITEURL.'home.php');
-       }else{
+        }else{
             // Create a session variable to display message
-            $_SESSION['add'] = "<div class='error'>Failed to sign up.</div>";
+            $_SESSION['signup'] = "<div class='error'>Failed to sign up.</div>";
             // Redirect Page
             header("location:".SITEURL.'signup.php');
-       }
+        }
     }
 ?>
