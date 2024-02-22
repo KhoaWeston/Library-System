@@ -152,7 +152,7 @@
                     $row_user=mysqli_fetch_assoc($res_user);
                     $books_out = $row_user['BooksOut'];
 
-                    if($books_out < 5){
+                    if(($books_out < 6 && $row_user['MemberType']=="member") || ($books_out < 12 && $row_user['MemberType']=="manager")){
                         // SQL Query to save the data into the loaned database
                         $sql_order = "INSERT INTO loaned SET
                         UID='$id',

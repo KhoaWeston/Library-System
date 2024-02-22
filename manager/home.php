@@ -5,94 +5,89 @@
         <div class="container">
             <h2 class="text-center">ShelfSavvy</h2>
             <?php 
+                // Display login message
                 if(isset($_SESSION['login'])){
-                    echo $_SESSION['login']; // Display message
-                    unset($_SESSION['login']); // Remove message
+                    echo $_SESSION['login']; 
+                    unset($_SESSION['login']); 
                 }
                 
-                // Query to get all books
-                $sql = "SELECT * FROM books";
+                // Query to get all the books details
+                $sql_books = "SELECT * FROM books";
                 // Execute the query
-                $res = mysqli_query($conn, $sql);
-                if($res==TRUE){
-                    // Count Rows to check whether we have data in the database or not
-                    $count = mysqli_num_rows($res); // Function to get all the rows in the database
-                    $count5 = 0;
-                    while($rows=mysqli_fetch_assoc($res)){
-                        $count5 += $rows['NumofCopies'];
+                $res_books = mysqli_query($conn, $sql_books);
+                // Check if query is executed 
+                if($res_books==TRUE){
+                    $count_books = mysqli_num_rows($res_books); // Count number of rows i.e. number of distinct books
+                    $count_total = 0;
+                    while($rows_books=mysqli_fetch_assoc($res_books)){
+                        $count_total += $rows_books['NumofCopies']; // Count total number of copies of books
                     }
                 }
 
                 // Query to get all users
-                $sql3 = "SELECT * FROM user";
-                // Execute the query
-                $res3 = mysqli_query($conn, $sql3);
-                if($res3==TRUE){
-                    // Count Rows to check whether we have data in the database or not
-                    $count4 = mysqli_num_rows($res3); // Function to get all the rows in the database
+                $sql_users = "SELECT * FROM user";
+                $res_users = mysqli_query($conn, $sql_users);
+                if($res_users==TRUE){
+                    $count_users = mysqli_num_rows($res_users); // Count number of users
                 }
 
                 // Query to get all loaned books
-                $sql2 = "SELECT * FROM loaned";
-                // Execute the query
-                $res2 = mysqli_query($conn, $sql2);
-                if($res2==TRUE){
-                    // Count Rows to check whether we have data in the database or not
-                    $count2 = mysqli_num_rows($res2); // Function to get all the rows in the database
+                $sql_loaned = "SELECT * FROM loaned";
+                $res_loaned = mysqli_query($conn, $sql_loaned);
+                if($res_loaned==TRUE){
+                    $count_loaned = mysqli_num_rows($res_loaned); // Count number of books are being loaned 
                 }
                 
-                $count3 = 0;
-                while($rows2=mysqli_fetch_assoc($res2)){
-                    if($rows2['ToBeReturnedDate'] < date("Y-m-d H:i:s")){
-                        $count3++;
+                $count_due = 0;
+                while($rows_due=mysqli_fetch_assoc($res_loaned)){
+                    if($rows_due['ToBeReturnedDate'] < date("Y-m-d H:i:s")){
+                        $count_due++; // Count number of books are overdue
                     }
                 }
 
                 // Query to get number of genres
-                $sql4 = "SELECT COUNT(DISTINCT Genre) AS count6 FROM books";
-                // Execute the query
-                $res4 = mysqli_query($conn, $sql4);
-                if($res4==TRUE){
-                    $rows4=mysqli_fetch_assoc($res4);
-                    $count6 = $rows4['count6'];
+                $sql_genres = "SELECT COUNT(DISTINCT Genre) AS count_genres FROM books";
+                $res_genres = mysqli_query($conn, $sql_genres);
+                if($res_genres==TRUE){
+                    $rows_genres=mysqli_fetch_assoc($res_genres);
+                    $count_genres = $rows_genres['count_genres']; // Count number of genres
                 }
 
                 // Query to get number of authors
-                $sql5 = "SELECT COUNT(DISTINCT Author) AS count7 FROM books";
-                // Execute the query
-                $res5 = mysqli_query($conn, $sql5);
-                if($res5==TRUE){
-                    $rows5=mysqli_fetch_assoc($res5);
-                    $count7 = $rows5['count7'];
+                $sql_authors = "SELECT COUNT(DISTINCT Author) AS count_authors FROM books";
+                $res_authors = mysqli_query($conn, $sql_authors);
+                if($res_authors==TRUE){
+                    $rows_authors=mysqli_fetch_assoc($res_authors);
+                    $count_authors = $rows_authors['count_authors'];
                 }
             ?>
-            
+            <br/>
             <div class="dash-container"> 
-                <h2><?php echo $count; ?></h2>
+                <h2><?php echo $count_books; ?></h2>
                 <p>Number of distinct books</p>
             </div>
             <div class="dash-container"> 
-                <h2><?php echo $count4; ?></h2>
+                <h2><?php echo $count_users; ?></h2>
                 <p>Number of Users</p>
             </div>
             <div class="dash-container"> 
-                <h2><?php echo $count2; ?></h2>
+                <h2><?php echo $count_loaned; ?></h2>
                 <p>Number of books reserved</p>
             </div>
             <div class="dash-container"> 
-                <h2><?php echo $count3; ?></h2>
+                <h2><?php echo $count_due; ?></h2>
                 <p>Number of books overdue</p>
             </div>
             <div class="dash-container"> 
-                <h2><?php echo $count5; ?></h2>
+                <h2><?php echo $count_total; ?></h2>
                 <p>Total number of books</p>
             </div>
             <div class="dash-container"> 
-                <h2><?php echo $count6; ?></h2>
+                <h2><?php echo $count_genres; ?></h2>
                 <p>Number of genres</p>
             </div>
             <div class="dash-container"> 
-                <h2><?php echo $count7; ?></h2>
+                <h2><?php echo $count_authors; ?></h2>
                 <p>Number of authors</p>
             </div>
         </div>

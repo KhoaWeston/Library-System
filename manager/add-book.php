@@ -6,7 +6,9 @@
             <h2 class="text-center">Add Book</h2>
             
             <?php 
+                // Start output buffering
                 ob_start();
+                // Display error messages
                 if(isset($_SESSION['add'])){
                     echo $_SESSION['add']; // Display message
                     unset($_SESSION['add']); // Remove message
@@ -18,35 +20,35 @@
                     <tr>
                         <td>ISBN: </td>
                         <td>
-                            <input type="number" name="isbn" placeholder="Book ISBN">
+                            <input type="number" name="isbn" placeholder="Book ISBN" required>
                         </td>
                     </tr>
 
                     <tr>
                         <td>Title: </td>
                         <td>
-                            <input type="text" name="title" placeholder="Book Title">
+                            <input type="text" name="title" placeholder="Book Title" required>
                         </td>
                     </tr>
 
                     <tr>
                         <td>Author: </td>
                         <td>
-                            <input type="text" name="author" placeholder="Book Author">
+                            <input type="text" name="author" placeholder="Book Author" required>
                         </td>
                     </tr>
 
                     <tr>
                         <td>Genre: </td>
                         <td>
-                            <input type="text" name="genre" placeholder="Book Genre">
+                            <input type="text" name="genre" placeholder="Book Genre" required>
                         </td>
                     </tr>
 
                     <tr>
                         <td>Number of Copies: </td>
                         <td>
-                            <input type="number" name="num_copies" placeholder="Number of Copies">
+                            <input type="number" name="num_copies" placeholder="Number of Copies" required>
                         </td>
                     </tr>
 
@@ -60,12 +62,11 @@
                     <tr>
                         <td colspan="2" class="row-btns text-center">
                             <input type="submit" name="submit" value="Add Book" class="btn btn-primary">
-                            <a href="book-list.php" class="btn btn-primary">Cancel</a>
+                            <a href="book-list.php" class="btn btn-primary indent">Cancel</a>
                         </td>
                     </tr>
                 </table>
             </form>
-
         </div>
     </section>
     <!-- Main Section Ends Here -->
@@ -102,7 +103,7 @@
             // Finally upload the image
             $upload = move_uploaded_file($source_path, $destination_path);
 
-            // CHeck whether the image is uploaded or not
+            // Check whether the image is uploaded or not
             // And if the image is not uploaded then
             if($upload==false){
                 // Set message
@@ -127,21 +128,22 @@
             image_name='$image_name'
         ";
 
-       // Execute query and save data into database
-       $res = mysqli_query($conn, $sql) or die(mysqli_error());
+        // Execute query and save data into database
+        $res = mysqli_query($conn, $sql) or die(mysqli_error());
 
-       // check whether the query is executed 
-       if($res==TRUE){        
+        // Check whether the query is executed 
+        if($res==TRUE){        
             // Create a session variable to display message
             $_SESSION['add'] = "<div class='success'>Book added successfully.</div>";
             // Redirect Page
             header("location:".SITEURL.'manager/book-list.php'); 
+            // Flush output buffer and turn off output buffering
             ob_end_flush();
-       }else{
+        }else{
             // Create a session variable to display message
             $_SESSION['add'] = "<div class='error'>Failed to add book.</div>";
             // Redirect Page
             header("location:".SITEURL.'manager/add-book.php');
-       }
+        }
     }
 ?>
