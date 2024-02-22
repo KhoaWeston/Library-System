@@ -125,7 +125,7 @@
                     // Create a session variable to display message
                     $_SESSION['update'] = "<div class='error'>Username is taken. </div>";
                     // Redirect Page
-                    header("location:".SITEURL.'edit-member.php?id='.$id);
+                    header("location:".SITEURL.'manager/edit-member.php?id='.$id);
                     exit();
                 }
             }

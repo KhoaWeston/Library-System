@@ -102,7 +102,7 @@
                     // Create a session variable to display message
                     $_SESSION['add'] = "<div class='error'>Username is taken. </div>";
                     // Redirect Page
-                    header("location:".SITEURL.'add-member.php?id='.$id);
+                    header("location:".SITEURL.'manager/add-member.php?id='.$id);
                     exit();
                 }
             }
