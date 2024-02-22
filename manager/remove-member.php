@@ -73,7 +73,7 @@
         // Get the ID of member to be deleted
         $id = $_GET['id'];
         
-        if($id == $_SESION['user']){
+        if($id == $_SESSION['user']){
             // Create a session variable to display message
             $_SESSION['delete'] = "<div class='error'>Cannot delete your own account.</div>";
             // Redirect Page
