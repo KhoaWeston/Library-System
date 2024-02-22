@@ -115,6 +115,22 @@
             exit();
         }
 
+        // Query to get all users
+        $sql_users = "SELECT * FROM user";
+        // Execute the query
+        $res_users = mysqli_query($conn, $sql_users);
+        if($res_users==TRUE){
+            while($rows_users=mysqli_fetch_assoc($res_users)){
+                if($username == $rows_users['Username']){
+                    // Create a session variable to display message
+                    $_SESSION['update'] = "<div class='error'>Username is taken. </div>";
+                    // Redirect Page
+                    header("location:".SITEURL.'edit-member.php?id='.$id);
+                    exit();
+                }
+            }
+        }
+
         // SQL Query to save the data into the database
         $sql_update = "UPDATE user SET
             Username='$username',
