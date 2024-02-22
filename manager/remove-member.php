@@ -78,6 +78,7 @@
             $_SESSION['delete'] = "<div class='error'>Cannot delete your own account.</div>";
             // Redirect Page
             header("location:".SITEURL.'manager/member-list.php');
+            exit();
         }
 
         // Create SQL query to delete member
