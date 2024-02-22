@@ -14,43 +14,45 @@
     </head>
 
     <body>
-        <div class="center">
-            <h1>Manager Login</h1>
+        <section class="background">
+            <div class="center">
+            <h1><img src="../images/ShelfSavvy-Logo.png" alt="Library System Logo" class="img-logo-login"><br/>Manager Login</h1>
 
-            <br/>
-            <?php 
-                if(isset($_SESSION['login'])){
-                    echo $_SESSION['login']; // Display message
-                    unset($_SESSION['login']); // Remove message
-                }
+                <br/>
+                <?php 
+                    // Display error messages
+                    if(isset($_SESSION['login'])){
+                        echo $_SESSION['login'];
+                        unset($_SESSION['login']);
+                    }
 
-                if(isset($_SESSION['no-login-manager'])){
-                    echo $_SESSION['no-login-manager']; // Display message
-                    unset($_SESSION['no-login-manager']); // Remove message
-                }
-            ?>
+                    if(isset($_SESSION['no-login-manager'])){
+                        echo $_SESSION['no-login-manager'];
+                        unset($_SESSION['no-login-manager']);
+                    }
+                ?>
 
-            <!-- Login Form Starts Here -->
-            <form action="" method="POST">
-                <div class="txt_field">
-                    <input type="text" name="username" required>
-                    <span></span>
-                    <label>Username</label>
-                </div>
-                <div class="txt_field">
-                    <input type="password" name="password" required>
-                    <span></span>
-                    <label>Password</label>
-                </div>
-                <div class="text-center">
-                    <input type="submit" name="submit" value="Login" class="btn btn-primary">
-                    <a href="<?php echo SITEURL; ?>" class="btn btn-primary">Go Back</a>
-                </div>
-                <br/><br/>
-            </form>
-            <!-- Login Form Ends Here -->
+                <!-- Login Form Starts Here -->
+                <form action="" method="POST">
+                    <div class="txt_field">
+                        <input type="text" name="username" required>
+                        <label>Username</label>
+                    </div>
+                    <div class="txt_field">
+                        <input type="password" name="password" required>
+                        <label>Password</label>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" name="submit" value="Login" class="btn btn-primary width-full">
+                        <br/><br/>
+                        <a href="<?php echo SITEURL; ?>" class="btn-login btn-primary">Return</a>
+                    </div>
+                    <br/><br/>
+                </form>
+                <!-- Login Form Ends Here -->
 
-        </div>
+            </div>
+        </section>
     </body>
 </html>
 
@@ -62,38 +64,38 @@
         $password = md5($_POST['password']);
 
         // SQL to check whether the user with username and password exists or not
-        $sql = "SELECT * FROM user WHERE Username='$username' AND Password='$password'";
+        $sql_match = "SELECT * FROM user WHERE Username='$username' AND Password='$password'";
 
         // Execute query and save data into database
-        $res = mysqli_query($conn, $sql);
+        $res_match = mysqli_query($conn, $sql_match);
 
-        $count = mysqli_num_rows($res);
+        $count_match = mysqli_num_rows($res_match);
 
         // check whether the query is executed 
-        if($count==1){        
-            // SQL to check whether the user with username and password exists or not
-            $sql1 = "SELECT * FROM user WHERE Username='$username' AND MemberType='manager'";
+        if($count_match==1){        
+            // SQL to check whether the user is a manager
+            $sql_man = "SELECT * FROM user WHERE Username='$username' AND MemberType='manager'";
 
             // Execute query and save data into database
-            $res1 = mysqli_query($conn, $sql1);
+            $res_man = mysqli_query($conn, $sql_man);
             
-            $count1 = mysqli_num_rows($res1);
+            $count_man = mysqli_num_rows($res_man);
 
-            if($count1 == 1){
+            if($count_man == 1){
                 // User Available and Login Success
                 $_SESSION['login'] = "<div class='success'>Login Successful.</div>";
                 // Create Session with user's id
-                $sql2 = "SELECT * FROM user WHERE Username='$username'";
-                $res2 = mysqli_query($conn, $sql2);
-                $row=mysqli_fetch_assoc($res2);
-                $id = $row['UID'];
+                $sql_login = "SELECT * FROM user WHERE Username='$username'";
+                $res_login = mysqli_query($conn, $sql_login);
+                $row_login=mysqli_fetch_assoc($res_login);
+                $id = $row_login['UID'];
                 $_SESSION['user'] = $id; // to check whether the user is logged in or not and logout will unset it
 
                 // Redirect Page
                 header("location:".SITEURL.'manager/home.php');
             }else{
                 // User not available and Login fail
-                $_SESSION['login'] = "<div class='error'>Not a manager.</div>";
+                $_SESSION['login'] = "<div class='error'>You are not permitted to login.</div>";
                 // Redirect Page
                 header("location:".SITEURL.'manager/login.php');
             }

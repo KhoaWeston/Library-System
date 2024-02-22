@@ -20,7 +20,7 @@
         <section class="navbar">
             <div class="nav-container">
                 <div class="text-center">
-                    <a href="home.php" title="Logo">
+                    <a href="<?php echo SITEURL; ?>home.php" title="Logo">
                         <img src="images/ShelfSavvy-Logo-Slogan.png" alt="Library System Logo" class="img-logo-home">
                     </a>
                 </div>

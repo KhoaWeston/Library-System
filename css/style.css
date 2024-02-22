@@ -22,19 +22,11 @@ body{
 .img-logo{
     width: 125%;
 }
-.img-logo-home{
-    width: 50%;
-    margin: 50px;
-}
 .img-responsive{
     height: 160px;
 }
 .img-curve{
     border-radius: 15px;
-}
-.img-home{
-    height: 200px;
-    margin-right: 20px;
 }
 
 .text-right{
@@ -129,7 +121,7 @@ fieldset{
 .comp-container{
     background-color: white;
     float: left;
-    width: 500px;
+    width: 41%;
     height: 250px;
     margin: auto;
     margin-right: 40px;
@@ -140,7 +132,7 @@ fieldset{
 .dash-container{
     background-color: white;
     text-align: center;
-    width: 200px;
+    width: 16.5%;
     float: left;
     margin-bottom: 50px;
     margin-right: 40px;

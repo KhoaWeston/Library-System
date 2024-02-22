@@ -15,17 +15,13 @@
 
     <body>
         <div class="center">
-            <h1>Member Signup</h1>
+            <h1><img src="images/ShelfSavvy-Logo.png" alt="Library System Logo" class="img-logo-login"><br/>Member Sign Up</h1>
 
             <?php 
+                // Displays error message
                 if(isset($_SESSION['login'])){
-                    echo $_SESSION['login']; // Display message
-                    unset($_SESSION['login']); // Remove message
-                }
-
-                if(isset($_SESSION['no-login-message'])){
-                    echo $_SESSION['no-login-message']; // Display message
-                    unset($_SESSION['no-login-message']); // Remove message
+                    echo $_SESSION['login']; 
+                    unset($_SESSION['login']); 
                 }
             ?>
 
@@ -33,27 +29,24 @@
             <form action="" method="POST">
                 <div class="txt_field">
                     <input type="text" name="username" required>
-                    <span></span>
                     <label>Username</label>
                 </div>
                 <div class="txt_field">
                     <input type="password" name="password" required>
-                    <span></span>
                     <label>Password</label>
                 </div>
                 <div class="txt_field">
                     <input type="text" name="address" required>
-                    <span></span>
                     <label>Address</label>
                 </div>
                 <div class="txt_field">
                     <input type="number" name="phone_num" required>
-                    <span></span>
                     <label>Phone Number</label>
                 </div>
                 <div class="text-center">
-                    <input type="submit" name="submit" value="Signup" class="btn btn-primary">
-                    <a href="<?php echo SITEURL; ?>login.php" class="btn btn-primary">Go Back</a>
+                    <input type="submit" name="submit" value="Signup" class="btn btn-primary width-full">
+                    <br/><br/>
+                    <a href="<?php echo SITEURL; ?>login.php" class="btn-login btn-primary">Return</a>
                 </div>
                 <br/><br/>
             </form>
@@ -66,7 +59,7 @@
 <?php 
     if(isset($_POST['submit']))
     {
-        // Get data from form
+        // Get data from sign up form
         $username = $_POST['username'];
         $password = md5($_POST['password']); // password encryption
         $address = $_POST['address'];
@@ -88,20 +81,20 @@
        // check whether the query is executed 
        if($res==TRUE){        
             // Create a session variable to display message
-            $_SESSION['signup'] = "<div class='success'>Member signup successful.</div>";
+            $_SESSION['signup'] = "<div class='success'>Member sign up successful.</div>";
             
             // Create Session with user's id
-            $sql2 = "SELECT * FROM user WHERE Username='$username'";
-            $res2 = mysqli_query($conn, $sql2);
-            $row=mysqli_fetch_assoc($res2);
-            $id = $row['UID'];
+            $sql_login = "SELECT * FROM user WHERE Username='$username'";
+            $res_login = mysqli_query($conn, $sql_login);
+            $row_login=mysqli_fetch_assoc($res_login);
+            $id = $row_login['UID'];
             $_SESSION['user'] = $id; // to check whether the user is logged in or not and logout will unset it
 
             // Redirect Page
             header("location:".SITEURL.'home.php');
        }else{
             // Create a session variable to display message
-            $_SESSION['add'] = "<div class='error'>Failed to signup.</div>";
+            $_SESSION['add'] = "<div class='error'>Failed to sign up.</div>";
             // Redirect Page
             header("location:".SITEURL.'signup.php');
        }

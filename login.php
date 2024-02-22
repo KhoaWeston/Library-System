@@ -14,45 +14,46 @@
     </head>
 
     <body>
-        <div class="center">
-            <h1>Member Login</h1>
+        <section class="background">   
+            <div class="center">
+                <h1><img src="images/ShelfSavvy-Logo.png" alt="Library System Logo" class="img-logo-login"><br/>Member Login</h1>
 
-            <?php 
-                if(isset($_SESSION['login'])){
-                    echo $_SESSION['login']; // Display message
-                    unset($_SESSION['login']); // Remove message
-                }
+                <?php 
+                    // display error messages
+                    if(isset($_SESSION['login'])){
+                        echo $_SESSION['login']; 
+                        unset($_SESSION['login']); 
+                    }
 
-                if(isset($_SESSION['no-login-member'])){
-                    echo $_SESSION['no-login-member']; // Display message
-                    unset($_SESSION['no-login-member']); // Remove message
-                }
-            ?>
+                    if(isset($_SESSION['no-login-member'])){
+                        echo $_SESSION['no-login-member']; 
+                        unset($_SESSION['no-login-member']); 
+                    }
+                ?>
 
-            <!-- Login Form Starts Here -->
-            <form action="" method="POST">
-                <div class="txt_field">
-                    <input type="text" name="username" required>
-                    <span></span>
-                    <label>Username</label>
-                </div>
-                <div class="txt_field">
-                    <input type="password" name="password" required>
-                    <span></span>
-                    <label>Password</label>
-                </div>
-                <!-- <div class="pass">Forgot Password?</div> -->
-                <div class="text-center">
-                    <input type="submit" name="submit" value="Login" class="btn btn-primary">
-                    <a href="<?php echo SITEURL; ?>" class="btn btn-primary">Go Back</a>
-                </div>
-                <div class="signup_link">
-                    Not a member? <a href="<?php echo SITEURL; ?>/signup.php">Signup</a>
-                </div>
-            </form>
-            <!-- Login Form Ends Here -->
+                <!-- Login Form Starts Here -->
+                <form action="" method="POST">
+                    <div class="txt_field">
+                        <input type="text" name="username" required>
+                        <label>Username</label>
+                    </div>
+                    <div class="txt_field">
+                        <input type="password" name="password" required>
+                        <label>Password</label>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" name="submit" value="Login" class="btn btn-primary width-full">
+                        <br/><br/>
+                        <a href="<?php echo SITEURL; ?>" class="btn-login btn-primary">Return</a>
+                    </div>
+                    <div class="signup_link">
+                        Not a member? <a href="<?php echo SITEURL; ?>/signup.php">Signup</a>
+                    </div>
+                </form>
+                <!-- Login Form Ends Here -->
 
-        </div>
+            </div>
+        </section> 
     </body>
 </html>
 
