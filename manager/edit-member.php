@@ -122,11 +122,13 @@
         if($res_users==TRUE){
             while($rows_users=mysqli_fetch_assoc($res_users)){
                 if($username == $rows_users['Username']){
-                    // Create a session variable to display message
-                    $_SESSION['update'] = "<div class='error'>Username is taken. </div>";
-                    // Redirect Page
-                    header("location:".SITEURL.'manager/edit-member.php?id='.$id);
-                    exit();
+                    if($id != $rows_users['UID']){
+                        // Create a session variable to display message
+                        $_SESSION['update'] = "<div class='error'>Username is taken. </div>";
+                        // Redirect Page
+                        header("location:".SITEURL.'manager/edit-member.php?id='.$id);
+                        exit();
+                    }
                 }
             }
         }

@@ -117,6 +117,24 @@
         $address = $_POST['address'];
         $phone_num = $_POST['phone_num']; 
 
+        // Query to get all users
+        $sql_users = "SELECT * FROM user";
+        // Execute the query
+        $res_users = mysqli_query($conn, $sql_users);
+        if($res_users==TRUE){
+            while($rows_users=mysqli_fetch_assoc($res_users)){
+                if($username == $rows_users['Username']){
+                    if($id != $rows_users['UID']){
+                        // Create a session variable to display message
+                        $_SESSION['update'] = "<div class='error'>Username is taken. </div>";
+                        // Redirect Page
+                        header("location:".SITEURL.'manager/edit-member.php?id='.$id);
+                        exit();
+                    }
+                }
+            }
+        }
+
         // SQL Query to save the data into the database
         $sql = "UPDATE user SET
             Username='$username',
