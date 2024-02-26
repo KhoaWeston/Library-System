@@ -124,7 +124,8 @@ fieldset{
     width: 41%;
     height: 250px;
     margin: auto;
-    margin-right: 40px;
+    margin-right: 20px;
+    margin-left: 20px;
     padding: 30px; 
     border-radius: 25px;
     box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.05); 
@@ -135,7 +136,8 @@ fieldset{
     width: 16.5%;
     float: left;
     margin-bottom: 50px;
-    margin-right: 40px;
+    margin-right: 20px;
+    margin-left: 20px;
     padding: 30px; 
     border-radius: 25px;
     box-shadow: 5px 5px 10px 10px rgba(0,0,0,0.05); 

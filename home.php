@@ -57,7 +57,17 @@
             <p>Number of books reserved</p>
         </div>
         <div class="dash-container"> 
-            <h2><?php echo $count_due; ?></h2>
+            <?php
+                if($count_due>0){
+                    ?>
+                    <h2 class="error"><?php echo $count_due; ?></h2>
+                    <?php
+                }    else{
+                    ?>
+                    <h2><?php echo $count_due; ?></h2>
+                    <?php
+                }
+            ?>
             <p>Number of books overdue</p>
         </div>
         <div class="dash-container"> 

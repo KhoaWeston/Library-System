@@ -106,12 +106,12 @@
         </table>
         <br/>
         <?php
-        // Query to get all books
-        $sql_books = "SELECT * FROM books";
-        $res_books = mysqli_query($conn ,$sql_books);
-        $rows_books = mysqli_num_rows($res_books );
+        // Query to get all users
+        $sql_users = "SELECT * FROM user";
+        $res_users = mysqli_query($conn ,$sql_users);
+        $rows_users = mysqli_num_rows($res_users);
         
-        $count_books = ceil($rows_books/$num_per_page);
+        $count_users = ceil($rows_users/$num_per_page);
 
         // Display Pagination buttons
         ?>
@@ -124,13 +124,13 @@
                 <?php
             }
             
-            for($i = 1; $i <= $count_books; $i++){
+            for($i = 1; $i <= $count_users; $i++){
                 ?>
                 <a href="<?php echo SITEURL; ?>manager/member-list.php?page=<?php echo $i; ?>" class="btn btn-primary"><?php echo $i; ?></a>
                 <?php
             }
 
-            if($page < $count_books){
+            if($page < $count_users){
                 ?>
                 <a href="<?php echo SITEURL; ?>manager/member-list.php?page=<?php echo $page+1; ?>" class="btn btn-primary">Next</a>
                 <?php

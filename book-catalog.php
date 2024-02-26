@@ -34,7 +34,7 @@
                 $page = 1;
             }
 
-            $num_per_page = 04; // Number of books displayed per page
+            $num_per_page = 06; // Number of books displayed per page
             $start_from = ($page-1)*$num_per_page;
 
             // Query to get books for page
