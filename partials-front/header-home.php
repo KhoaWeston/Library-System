@@ -13,6 +13,9 @@
         <!-- Link our CSS file -->
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/member.css">
+
+        <!-- Import Icons -->
+        <script src="https://kit.fontawesome.com/7650ba29e7.js" crossorigin="anonymous"></script>
     </head>
 
     <body>

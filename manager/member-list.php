@@ -54,23 +54,34 @@
             </thead>
 
             <?php 
-                // Query to get all members
-                $sql = "SELECT * FROM user ORDER BY UID DESC";
+                // Pagination 
+                if(isset($_GET['page'])){
+                    $page = $_GET['page'];
+                }else{
+                    $page = 1;
+                }
+
+                $num_per_page = 05; // Number of books displayed per page
+                $start_from = ($page-1)*$num_per_page;
+
+                // Query to get members for page
+                $sql_page = "SELECT * FROM user ORDER BY UID DESC LIMIT $start_from, $num_per_page";
+
                 // Execute the query
-                $res = mysqli_query($conn, $sql);
+                $res_page = mysqli_query($conn, $sql_page);
 
                 // Check whether the query is executed or not
-                if($res==TRUE){
+                if($res_page==TRUE){
                     // Count Rows to check whether we have data in the database or not
-                    $count = mysqli_num_rows($res); // Function to get all the rows in the database
+                    $count_page = mysqli_num_rows($res_page); // Function to get all the rows in the database
 
-                    if($count>0){
-                        while($rows=mysqli_fetch_assoc($res)){
-                            $id = $rows['UID'];
-                            $username = $rows['Username'];
-                            $address = $rows['Address'];
-                            $phone_num = $rows['PhoneNum'];
-                            $member_type = $rows['MemberType'];
+                    if($count_page>0){
+                        while($rows_page=mysqli_fetch_assoc($res_page)){
+                            $id = $rows_page['UID'];
+                            $username = $rows_page['Username'];
+                            $address = $rows_page['Address'];
+                            $phone_num = $rows_page['PhoneNum'];
+                            $member_type = $rows_page['MemberType'];
 
                             ?>
                             <tr>
@@ -93,6 +104,39 @@
                 }
             ?> 
         </table>
+        <br/>
+        <?php
+        // Query to get all books
+        $sql_books = "SELECT * FROM books";
+        $res_books = mysqli_query($conn ,$sql_books);
+        $rows_books = mysqli_num_rows($res_books );
+        
+        $count_books = ceil($rows_books/$num_per_page);
+
+        // Display Pagination buttons
+        ?>
+        <div class="clearfix"></div><br/>
+        <div class="text-center">
+            <?php
+            if($page > 1){
+                ?>
+                <a href="<?php echo SITEURL; ?>manager/member-list.php?page=<?php echo $page-1; ?>" class="btn btn-primary">Previous</a>
+                <?php
+            }
+            
+            for($i = 1; $i <= $count_books; $i++){
+                ?>
+                <a href="<?php echo SITEURL; ?>manager/member-list.php?page=<?php echo $i; ?>" class="btn btn-primary"><?php echo $i; ?></a>
+                <?php
+            }
+
+            if($page < $count_books){
+                ?>
+                <a href="<?php echo SITEURL; ?>manager/member-list.php?page=<?php echo $page+1; ?>" class="btn btn-primary">Next</a>
+                <?php
+            }
+            ?>
+        </div>
         <div class="clearfix"></div>
     </div>
 </section>

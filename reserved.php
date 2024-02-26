@@ -45,8 +45,9 @@
                             $image_name = $rows_detail['image_name'];
                         }
                         ?>
-
+                        
                         <div class="book-catalog-box">
+                            
                             <div class="book-catalog-img">
                                 <?php 
                                     // Check whether image name is avaible or not
@@ -61,7 +62,13 @@
                                     }
                                 ?>    
                             </div>
-
+                            <div class="error">
+                                <?php 
+                                    if(date("Y-m-d H:i:s") > $to_date){
+                                        echo "Book is overdue";
+                                    }
+                                ?>
+                            </div>
                             <div class="book-catalog-desc">
                                 <table class="tbl width-full">
                                     <tr>
@@ -84,14 +91,10 @@
                                         <td><?php echo date("m-d-Y", strtotime($to_date)); ?></td>
                                     </tr>
                                 </table>
-                                <div class="error">
-                                    <?php 
-                                        if(date("Y-m-d H:i:s") > $to_date){
-                                            echo "Book is overdue";
-                                        }
-                                    ?>
+                                
+                                <div class="text-center">
+                                    <a href="<?php echo SITEURL; ?>return-book.php?isbn=<?php echo $isbn; ?>" class="btn btn-primary">Return Now</a>
                                 </div>
-                                <a href="<?php echo SITEURL; ?>return-book.php?isbn=<?php echo $isbn; ?>" class="btn btn-primary">Return Now</a>
                             </div>
                         </div>
                         <?php 

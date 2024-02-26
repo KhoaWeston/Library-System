@@ -55,6 +55,16 @@
 
     <br/><br/>
 
+    <!-- Swtich Profile Section begins here -->
+    <div class="confirm-container text-right">
+        <h3 class="text-left">Switch to Member</h3><br/>
+        <div class="text-left">Do you want to switch to the member panel? </div><br/>
+        <a href="<?php echo SITEURL; ?>home.php" class="btn btn-primary">Switch</a>
+    </div>
+    <!-- Switch Profile Section ends here -->
+
+    <br/><br/>
+
     <!-- Logout Section begins here -->
     <div class="confirm-container text-right">
         <h3 class="text-left">Logout</h3><br/>

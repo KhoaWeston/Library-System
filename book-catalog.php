@@ -27,30 +27,41 @@
                 unset($_SESSION['return']); 
             }
 
-            // Query to get all books
-            $sql_books = "SELECT * FROM books";
+            // Pagination 
+            if(isset($_GET['page'])){
+                $page = $_GET['page'];
+            }else{
+                $page = 1;
+            }
+
+            $num_per_page = 04; // Number of books displayed per page
+            $start_from = ($page-1)*$num_per_page;
+
+            // Query to get books for page
+            $sql_books_page = "SELECT * FROM books LIMIT $start_from, $num_per_page";
+            
             // Execute the query
-            $res_books = mysqli_query($conn, $sql_books);
+            $res_books_page = mysqli_query($conn, $sql_books_page);
             
             // Query to get all loaned books
             $sql_loan = "SELECT * FROM loaned";
             // Execute the query
             $res_loan = mysqli_query($conn, $sql_loan);
 
-            // Check whether the queries is executed or not
-            if($res_books==TRUE && $res_loan == TRUE){
+            // Check whether the queries are executed or not
+            if($res_books_page==TRUE && $res_loan == TRUE){
                 // Count Rows to check whether we have data in the database or not
-                $count_books = mysqli_num_rows($res_books); 
+                $count_books_page = mysqli_num_rows($res_books_page); 
                 $count_loan = mysqli_num_rows($res_loan);
 
-                if($count_books>0){
-                    while($rows_books=mysqli_fetch_assoc($res_books)){
-                        $isbn = $rows_books['BookID'];
-                        $title = $rows_books['Title'];
-                        $author = $rows_books['Author'];
-                        $genre = $rows_books['Genre'];
-                        $num_copies = $rows_books['NumofCopies'];
-                        $image_name = $rows_books['image_name'];
+                if($count_books_page>0){
+                    while($rows_books_page=mysqli_fetch_assoc($res_books_page)){
+                        $isbn = $rows_books_page['BookID'];
+                        $title = $rows_books_page['Title'];
+                        $author = $rows_books_page['Author'];
+                        $genre = $rows_books_page['Genre'];
+                        $num_copies = $rows_books_page['NumofCopies'];
+                        $image_name = $rows_books_page['image_name'];
 
                         ?>
 
@@ -98,7 +109,7 @@
                                         <td><?php echo $genre; ?></td>
                                     </tr>
                                 </table>
-
+                                <div class="text-center">
                                 <?php 
                                     // Check if there are any copies to checkout
                                     if($num_copies > 0){ 
@@ -126,7 +137,7 @@
                                     }else{
                                         echo "<div class='error'>No copies to checkout.</div>";
                                     }
-                                ?>
+                                ?></div>
                             </div>
                         </div>
                         <?php 
@@ -135,8 +146,38 @@
                     echo "<div class='error'>No books in catalog.</div>";
                 }
             }
-        ?>
-        <div class="clearfix"></div>
+
+            // Query to get all books
+            $sql_books = "SELECT * FROM books";
+            $res_books = mysqli_query($conn ,$sql_books);
+            $rows_books = mysqli_num_rows($res_books );
+            
+            $count_books = ceil($rows_books/$num_per_page);
+
+            // Display Pagination buttons
+            ?>
+            <div class="clearfix"></div><br/>
+            <div class="text-center">
+                <?php
+                if($page > 1){
+                    ?>
+                    <a href="<?php echo SITEURL; ?>book-catalog.php?page=<?php echo $page-1; ?>" class="btn btn-primary">Previous</a>
+                    <?php
+                }
+                
+                for($i = 1; $i <= $count_books; $i++){
+                    ?>
+                    <a href="<?php echo SITEURL; ?>book-catalog.php?page=<?php echo $i; ?>" class="btn btn-primary"><?php echo $i; ?></a>
+                    <?php
+                }
+
+                if($page < $count_books){
+                    ?>
+                    <a href="<?php echo SITEURL; ?>book-catalog.php?page=<?php echo $page+1; ?>" class="btn btn-primary">Next</a>
+                    <?php
+                }
+                ?>
+            </div>
     </div>
 </section>
 <!-- Book Catalog Section Ends Here -->

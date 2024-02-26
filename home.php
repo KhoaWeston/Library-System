@@ -68,7 +68,19 @@
 
         <!-- Recently Added Section Begins Here --> 
         <div class="comp-container"> 
-            <h2>Recently Added</h2>
+            <table class="width-full">
+                <tr>
+                    <td class="text-left">
+                        <h2>Recently Added</h2>
+                    </td>
+                    <td class="text-right">
+                        <div class="tooltip"><i class="fa-solid fa-circle-info"></i>
+                            <span class="tooltiptext">See the 3 most recently added books to the catalog!</span>
+                        </div>
+                    </td>
+                </tr>
+            </table>    
+        
             <?php 
                 $ctr = 0;
                 while($rows_books=mysqli_fetch_assoc($res_books)){
@@ -95,7 +107,18 @@
 
         <!-- Upcoming Deadlines Section Begins Here -->
         <div class="comp-container"> 
-            <h2>Upcoming Deadlines</h2>
+        <table class="width-full">
+                <tr>
+                    <td class="text-left">
+                        <h2>Upcoming Deadlines</h2>
+                    </td>
+                    <td class="text-right">
+                        <div class="tooltip"><i class="fa-solid fa-circle-info"></i>
+                            <span class="tooltiptext">Any deadlines that are coming up in the next 3 days will be displayed here!</span>
+                        </div>
+                    </td>
+                </tr>
+            </table> 
             <?php 
                 $flag = FALSE;
                 foreach($res_loaned as $rows_loaned0){
@@ -120,7 +143,57 @@
             ?>
         </div>
         <!-- Upcoming Deadlines Section Ends Here -->
+        
+        <!-- Popup Section Begins Here -->
+        <?php
+            if($count_due > 0){
+                ?>
+                <div id="popup" class="modal">
+                    <div class="modal-content">
+                        <h2>Books Overdue</h2>
+                        <a class="close">&times;</a>
+                        <div class="content">
+                            You have <?php echo $count_due; ?> book(s) overdue. Navigate to the Reserved page and return them.
+                        </div>
+                        <br/>
+                        <div class="text-right"><a href="<?php echo SITEURL; ?>reserved.php"" class="btn btn-primary">Go Now</a></div>
+                        <br/>
+                    </div>
+                </div>
+                <?php
+                alert(); 
+            }
+        ?>
 
+        <?php 
+            function alert(){ 
+                ?> 
+                <script type='text/javascript'>
+                    // Get the modal
+                    var popup = document.getElementById("popup");
+
+                    // Get the <span> element that closes the modal
+                    var span = document.getElementsByClassName("close")[0];
+
+                    // open the modal
+                    popup.style.display = "block";
+
+                    // When the user clicks on <span> (x), close the modal
+                    span.onclick = function() {
+                        popup.style.display = "none";
+                    }
+
+                    // When the user clicks anywhere outside of the modal, close it
+                    window.onclick = function(event) {
+                        if (event.target == popup) {
+                            popup.style.display = "none";
+                        }
+                    }
+                </script>
+                <?php 
+            }  
+        ?> 
+        <!-- Popup Section Ends Here -->
     </div>
 </section>
 <!-- Main Section Ends Here -->

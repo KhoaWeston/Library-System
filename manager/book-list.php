@@ -50,24 +50,34 @@
             </thead>
 
             <?php 
-                // Query to get all books
-                $sql = "SELECT * FROM books ORDER BY reg_date DESC";
+                // Pagination 
+                if(isset($_GET['page'])){
+                    $page = $_GET['page'];
+                }else{
+                    $page = 1;
+                }
+
+                $num_per_page = 05; // Number of books displayed per page
+                $start_from = ($page-1)*$num_per_page;
+
+                // Query to get books for page
+                $sql_page = "SELECT * FROM books ORDER BY reg_date DESC LIMIT $start_from, $num_per_page";
                 // Execute the query
-                $res = mysqli_query($conn, $sql);
+                $res_page = mysqli_query($conn, $sql_page);
 
                 // Check whether the query is executed or not
-                if($res==TRUE){
+                if($res_page==TRUE){
                     // Count Rows to check whether we have data in the database or not
-                    $count = mysqli_num_rows($res); // Function to get all the rows in the database
+                    $count_page = mysqli_num_rows($res_page); // Function to get all the rows in the database
 
-                    if($count>0){
-                        while($rows=mysqli_fetch_assoc($res)){
-                            $isbn = $rows['BookID'];
-                            $title = $rows['Title'];
-                            $author = $rows['Author'];
-                            $genre = $rows['Genre'];
-                            $num_copies = $rows['NumofCopies'];
-                            $image_name = $rows['image_name'];
+                    if($count_page>0){
+                        while($rows_page=mysqli_fetch_assoc($res_page)){
+                            $isbn = $rows_page['BookID'];
+                            $title = $rows_page['Title'];
+                            $author = $rows_page['Author'];
+                            $genre = $rows_page['Genre'];
+                            $num_copies = $rows_page['NumofCopies'];
+                            $image_name = $rows_page['image_name'];
 
                             ?>
                             <tr>
@@ -101,8 +111,41 @@
                         // No data
                     }
                 }
-            ?> 
+                ?>
         </table>
+        <br/>
+        <?php
+        // Query to get all books
+        $sql_books = "SELECT * FROM books";
+        $res_books = mysqli_query($conn ,$sql_books);
+        $rows_books = mysqli_num_rows($res_books );
+        
+        $count_books = ceil($rows_books/$num_per_page);
+
+        // Display Pagination buttons
+        ?>
+        <div class="clearfix"></div><br/>
+        <div class="text-center">
+            <?php
+            if($page > 1){
+                ?>
+                <a href="<?php echo SITEURL; ?>manager/book-list.php?page=<?php echo $page-1; ?>" class="btn btn-primary">Previous</a>
+                <?php
+            }
+            
+            for($i = 1; $i <= $count_books; $i++){
+                ?>
+                <a href="<?php echo SITEURL; ?>manager/book-list.php?page=<?php echo $i; ?>" class="btn btn-primary"><?php echo $i; ?></a>
+                <?php
+            }
+
+            if($page < $count_books){
+                ?>
+                <a href="<?php echo SITEURL; ?>manager/book-list.php?page=<?php echo $page+1; ?>" class="btn btn-primary">Next</a>
+                <?php
+            }
+            ?>
+        </div>
         <div class="clearfix"></div>
     </div>
 </section>
