@@ -117,7 +117,7 @@
 
         <!-- Upcoming Deadlines Section Begins Here -->
         <div class="comp-container"> 
-        <table class="width-full">
+            <table class="width-full">
                 <tr>
                     <td class="text-left">
                         <h2>Upcoming Deadlines</h2>
@@ -133,7 +133,7 @@
                 $flag = FALSE;
                 foreach($res_loaned as $rows_loaned0){
                     // Displays books with deadlines within 3 days of the current date
-                    if($rows_loaned0['ToBeReturnedDate'] < date('Y-m-d H:i:s', strtotime('+3 day'))){
+                    if(($rows_loaned0['ToBeReturnedDate'] < date('Y-m-d H:i:s', strtotime('+3 day'))) && $rows_loaned0['UID'] == $_SESSION['user']){
                         $isbn = $rows_loaned0['BookID']; // Gets ISBN of book
                         // Query to get all title of book given its isbn
                         $sql_title = "SELECT Title AS title FROM books WHERE BookID='$isbn'";

@@ -17,7 +17,7 @@
         <section class="background">   
             <div class="center">
                 <h1><img src="images/ShelfSavvy-Logo.png" alt="Library System Logo" class="img-logo-login"><br/>Member Login</h1>
-
+                <br/>
                 <?php 
                     // display error messages
                     if(isset($_SESSION['login'])){
@@ -47,7 +47,7 @@
                         <a href="<?php echo SITEURL; ?>" class="btn-login btn-primary">Return</a>
                     </div>
                     <div class="signup_link">
-                        Not a member? <a href="<?php echo SITEURL; ?>/signup.php">Signup</a>
+                        Not a member? <a href="<?php echo SITEURL; ?>signup.php">Signup</a>
                     </div>
                 </form>
                 <!-- Login Form Ends Here -->
